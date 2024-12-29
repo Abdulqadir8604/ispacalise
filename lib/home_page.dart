@@ -12,8 +12,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: const Text('iSpacalise', style: TextStyle(color: Colors.black)),
+        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
+        centerTitle: true,
+        title: const Text('iSpacalise', style: TextStyle(color: Colors.black, fontSize: 30)),
       ),
       body: SizedBox(
         width: double.infinity,

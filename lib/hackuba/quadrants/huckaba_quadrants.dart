@@ -5,14 +5,15 @@ import 'package:flutter/material.dart';
 import '../../service/huckaba.dart';
 import '../../ui/MButton.dart';
 
-class MandibularLeftPage extends StatefulWidget {
-  const MandibularLeftPage({super.key});
+class HuckabaQuads extends StatefulWidget {
+  final Map huckabaData;
+  const HuckabaQuads({super.key, required this.huckabaData});
 
   @override
-  State<MandibularLeftPage> createState() => _MandibularLeftPageState();
+  State<HuckabaQuads> createState() => _HuckabaQuadsState();
 }
 
-class _MandibularLeftPageState extends State<MandibularLeftPage> {
+class _HuckabaQuadsState extends State<HuckabaQuads> {
   TextEditingController x1Controller = TextEditingController();
   TextEditingController x2Controller = TextEditingController();
   TextEditingController y2Controller = TextEditingController();
@@ -21,22 +22,22 @@ class _MandibularLeftPageState extends State<MandibularLeftPage> {
   Map report = {};
 
   String calculateY1() {
-    HuckabaAnalysis mandibularLeft = HuckabaAnalysis(
+    HuckabaAnalysis maxillaryRight = HuckabaAnalysis(
       x1: double.parse(x1Controller.text),
       x2: double.parse(x2Controller.text),
       y2: double.parse(y2Controller.text),
     );
-    report = mandibularLeft.generateReport();
-    return mandibularLeft.calculateY1().toStringAsFixed(2);
+    report = maxillaryRight.generateReport();
+    return maxillaryRight.calculateY1().toStringAsFixed(2);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: const Text('Huckaba Analysis: Mandibular Left',
-            style: TextStyle(color: Colors.black)),
+        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
+        title: Text('Huckaba Analysis: ${widget.huckabaData["title"]}',
+            style: const TextStyle(color: Colors.black, fontSize: 30)),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -66,13 +67,13 @@ class _MandibularLeftPageState extends State<MandibularLeftPage> {
             ],
           )
               : SingleChildScrollView(
-                child: Column(
-                            children: [
+            child: Column(
+              children: [
                 _buildInputSection(context),
                 _buildReportSection(context),
-                            ],
-                          ),
-              );
+              ],
+            ),
+          );
         },
       ),
     );
@@ -102,9 +103,9 @@ class _MandibularLeftPageState extends State<MandibularLeftPage> {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                const Text(
-                  "Mesiodistal width of 74",
-                  style: TextStyle(fontSize: 20),
+                Text(
+                  "Mesiodistal width of ${widget.huckabaData["x1"]}",
+                  style: const TextStyle(fontSize: 20),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
@@ -140,9 +141,9 @@ class _MandibularLeftPageState extends State<MandibularLeftPage> {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                const Text(
-                  "Mesiodistal width of 74",
-                  style: TextStyle(fontSize: 20),
+                Text(
+                  "Mesiodistal width of ${widget.huckabaData["x2"]}",
+                  style: const TextStyle(fontSize: 20),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
@@ -163,9 +164,9 @@ class _MandibularLeftPageState extends State<MandibularLeftPage> {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                const Text(
-                  "Mesiodistal width of 44",
-                  style: TextStyle(fontSize: 20),
+                Text(
+                  "Mesiodistal width of ${widget.huckabaData["y2"]}",
+                  style: const TextStyle(fontSize: 20),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
@@ -231,7 +232,7 @@ class _MandibularLeftPageState extends State<MandibularLeftPage> {
                     const Text(
                       "Space available: ",
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 20,
                       ),
                     ),
                     Text(
@@ -249,7 +250,7 @@ class _MandibularLeftPageState extends State<MandibularLeftPage> {
                     const Text(
                       "Apparent Width of Unerupted Premolar: ",
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 20,
                       ),
                     ),
                     Text(
@@ -293,7 +294,7 @@ class _MandibularLeftPageState extends State<MandibularLeftPage> {
                 Text(
                   report["prediction"] ?? "",
                   style: const TextStyle(
-                    fontSize: 30,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
