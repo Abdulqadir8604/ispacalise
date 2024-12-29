@@ -30,8 +30,8 @@ class HuckabaAnalysis {
       "prediction": x1 > y1
           ? "Adequate space, no regaining needed"
           : "Inadequate space, space regainer required.",
-      "spaceAvailable": "$x1",
-      "apparentWidthOfUneruptedPremolar": "$y1"
+      "spaceAvailable": x1.toStringAsFixed(2),
+      "apparentWidthOfUneruptedPremolar": y1.toStringAsFixed(2),
     };
   }
 }

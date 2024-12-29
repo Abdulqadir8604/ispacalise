@@ -1,7 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ispacalise/hackuba/quadrants/mandibular_right.dart';
 import 'package:ispacalise/ui/MButton.dart';
+
+import 'quadrants/mandibular_left.dart';
+import 'quadrants/mandibular_right.dart';
+import 'quadrants/maxillary_left.dart';
+import 'quadrants/maxillary_right.dart';
 
 class HuckabaAnalysisPage extends StatefulWidget {
   const HuckabaAnalysisPage({super.key});
@@ -58,11 +61,25 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                   crossAxisSpacing: 8,
                   children: [
                     MButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MaxillaryRightPage(),
+                          ),
+                        );
+                      },
                       text: 'Maxillary Right Quadrant',
                     ),
                     MButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MaxillaryLeftPage(),
+                          ),
+                        );
+                      },
                       text: 'Maxillary Left Quadrant',
                     ),
                     MButton(
@@ -78,7 +95,12 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                     ),
                     MButton(
                       onPressed: () {
-            
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MandibularLeftPage(),
+                          ),
+                        );
                       },
                       text: 'Mandibular Left Quadrant',
                     ),

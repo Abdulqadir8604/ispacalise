@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import '../../service/huckaba.dart';
 import '../../ui/MButton.dart';
 
-class MandibularRightPage extends StatefulWidget {
-  const MandibularRightPage({super.key});
+class MaxillaryRightPage extends StatefulWidget {
+  const MaxillaryRightPage({super.key});
 
   @override
-  State<MandibularRightPage> createState() => _MandibularRightPageState();
+  State<MaxillaryRightPage> createState() => _MaxillaryRightPageState();
 }
 
-class _MandibularRightPageState extends State<MandibularRightPage> {
+class _MaxillaryRightPageState extends State<MaxillaryRightPage> {
   TextEditingController x1Controller = TextEditingController();
   TextEditingController x2Controller = TextEditingController();
   TextEditingController y2Controller = TextEditingController();
@@ -21,13 +21,13 @@ class _MandibularRightPageState extends State<MandibularRightPage> {
   Map report = {};
 
   String calculateY1() {
-    HuckabaAnalysis mandibularRight = HuckabaAnalysis(
+    HuckabaAnalysis maxillaryRight = HuckabaAnalysis(
       x1: double.parse(x1Controller.text),
       x2: double.parse(x2Controller.text),
       y2: double.parse(y2Controller.text),
     );
-    report = mandibularRight.generateReport();
-    return mandibularRight.calculateY1().toStringAsFixed(2);
+    report = maxillaryRight.generateReport();
+    return maxillaryRight.calculateY1().toStringAsFixed(2);
   }
 
   @override
@@ -35,7 +35,7 @@ class _MandibularRightPageState extends State<MandibularRightPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text('Huckaba Analysis: Mandibular Right',
+        title: const Text('Huckaba Analysis: Maxillary Right',
             style: TextStyle(color: Colors.black)),
       ),
       floatingActionButton: FloatingActionButton(
@@ -101,7 +101,7 @@ class _MandibularRightPageState extends State<MandibularRightPage> {
             child: Row(
               children: [
                 const Text(
-                  "Mesiodistal width of 84",
+                  "Mesiodistal width of 54",
                   style: TextStyle(fontSize: 20),
                 ),
                 const SizedBox(width: 10),
@@ -139,7 +139,7 @@ class _MandibularRightPageState extends State<MandibularRightPage> {
             child: Row(
               children: [
                 const Text(
-                  "Mesiodistal width of 84",
+                  "Mesiodistal width of 54",
                   style: TextStyle(fontSize: 20),
                 ),
                 const SizedBox(width: 10),
@@ -162,7 +162,7 @@ class _MandibularRightPageState extends State<MandibularRightPage> {
             child: Row(
               children: [
                 const Text(
-                  "Mesiodistal width of 44",
+                  "Mesiodistal width of 14",
                   style: TextStyle(fontSize: 20),
                 ),
                 const SizedBox(width: 10),
