@@ -23,6 +23,8 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             MButton(
+              height: 50,
+              width: 200,
               onPressed: () {
                 Navigator.push(
                   context,

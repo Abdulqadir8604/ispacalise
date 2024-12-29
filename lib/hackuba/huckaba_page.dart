@@ -17,13 +17,13 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-        title: const Text('Huckaba Analysis',
-            style: TextStyle(color: Colors.black, fontSize: 30)),
+        title: Text('Huckaba Analysis',
+            style: TextStyle(color: Colors.black, fontSize: Theme.of(context).textTheme.titleLarge?.fontSize)),
       ),
       body: SizedBox(
         width: double.infinity,
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,9 +33,9 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline)),
-                const Text(
+                Text(
                   "To predict the space discrepancy with regards to unerupted first premolars while planning a unilateral space maintainer with the help of IOPA.",
-                  style: TextStyle(fontSize: 25),
+                  style: TextStyle(fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,),
                 ),
                 const SizedBox(height: 20),
                 Text("Armanentarium: ",
@@ -46,18 +46,21 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                         decoration: TextDecoration.underline)),
                 Text(
                   "Study model\nScale\nDivider\nIOPA of the quadrant in which space maintainer(unilateral) is planned",
-                  style: TextStyle(fontSize: 25, color: colorScheme.onSurface),
+                  style: TextStyle(fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize, color: colorScheme.onSurface),
                 ),
                 const SizedBox(height: 20),
                 GridView.count(
                   crossAxisCount: 2,
                   shrinkWrap: true,
-                  childAspectRatio: 3,
+                  childAspectRatio: 2,
                   padding: const EdgeInsets.all(8),
                   mainAxisSpacing: 8,
+                  physics: const NeverScrollableScrollPhysics(),
                   crossAxisSpacing: 8,
                   children: [
                     MButton(
+                      height: 100,
+                      width: 170,
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -68,9 +71,11 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                           ),
                         );
                       },
-                      text: 'Maxillary Right Quadrant',
+                      text: 'Maxillary Right',
                     ),
                     MButton(
+                      height: 100,
+                      width: 170,
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -81,9 +86,11 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                           ),
                         );
                       },
-                      text: 'Maxillary Left Quadrant',
+                      text: 'Maxillary Left',
                     ),
                     MButton(
+                      height: 100,
+                      width: 170,
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -94,23 +101,25 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                           ),
                         );
                       },
-                      text: 'Mandibular Right Quadrant',
+                      text: 'Mandibular Right',
                     ),
                     MButton(
+                      height: 100,
+                      width: 170,
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const HuckabaQuads(
-                              huckabaData: {"x1": 74, "x2": 74, "y2": 44, "title": "Mandibular Left"},
+                              huckabaData: {"x1": 74, "x2": 74, "y2": 34, "title": "Mandibular Left"},
                             ),
                           ),
                         );
                       },
-                      text: 'Mandibular Left Quadrant',
+                      text: 'Mandibular Left',
                     ),
                   ],
-                ),
+                )
               ],
             ),
           ),

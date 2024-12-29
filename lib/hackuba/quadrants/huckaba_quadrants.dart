@@ -7,6 +7,7 @@ import '../../ui/MButton.dart';
 
 class HuckabaQuads extends StatefulWidget {
   final Map huckabaData;
+
   const HuckabaQuads({super.key, required this.huckabaData});
 
   @override
@@ -37,43 +38,47 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
         title: Text('Huckaba Analysis: ${widget.huckabaData["title"]}',
-            style: const TextStyle(color: Colors.black, fontSize: 30)),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          x1Controller.clear();
-          x2Controller.clear();
-          y2Controller.clear();
-          setState(() {
-            y1 = 0;
-            report = {};
-          });
-        },
-        child: const Icon(Icons.refresh),
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: Theme.of(context).textTheme.titleMedium?.fontSize)),
+        actionsIconTheme: IconThemeData(color: Theme.of(context).colorScheme.primary),
+        actions: [
+          IconButton(
+              onPressed: () {
+                x1Controller.clear();
+                x2Controller.clear();
+                y2Controller.clear();
+                setState(() {
+                  y1 = 0;
+                  report = {};
+                });
+              },
+              icon: const Icon(Icons.refresh)),
+        ],
       ),
       body: OrientationBuilder(
         builder: (context, orientation) {
           return orientation == Orientation.landscape
               ? Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: _buildInputSection(context),
-              ),
-              Expanded(
-                flex: 1,
-                child: _buildReportSection(context),
-              ),
-            ],
-          )
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: _buildInputSection(context),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: _buildReportSection(context),
+                    ),
+                  ],
+                )
               : SingleChildScrollView(
-            child: Column(
-              children: [
-                _buildInputSection(context),
-                _buildReportSection(context),
-              ],
-            ),
-          );
+                  child: Column(
+                    children: [
+                      _buildInputSection(context),
+                      _buildReportSection(context),
+                    ],
+                  ),
+                );
         },
       ),
     );
@@ -94,7 +99,7 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
             child: Text(
               "Measure the following on the study model: ",
               style: TextStyle(
-                  fontSize: 30,
+                  fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
                   color: Theme.of(context).colorScheme.onPrimary),
             ),
           ),
@@ -132,7 +137,7 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
             child: Text(
               "Measure the following on the IOPA: ",
               style: TextStyle(
-                  fontSize: 30,
+                  fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
                   color: Theme.of(context).colorScheme.onPrimary),
             ),
           ),
@@ -183,13 +188,18 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
             ),
           ),
           const SizedBox(height: 20),
-          MButton(
-            onPressed: () {
-              setState(() {
-                y1 = double.parse(calculateY1());
-              });
-            },
-            text: 'Calculate',
+          SizedBox(
+            height: 50,
+            child: MButton(
+              height: 50,
+              width: 200,
+              onPressed: () {
+                setState(() {
+                  y1 = double.parse(calculateY1());
+                });
+              },
+              text: 'Calculate',
+            ),
           ),
           const SizedBox(height: 20),
         ],
@@ -212,7 +222,7 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
             child: Text(
               "Report: ",
               style: TextStyle(
-                fontSize: 30,
+                fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
                 color: Theme.of(context).colorScheme.onPrimary,
               ),
             ),
@@ -229,36 +239,58 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
               children: [
                 Row(
                   children: [
-                    const Text(
-                      "Space available: ",
-                      style: TextStyle(
-                        fontSize: 20,
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        "Space available: ",
+                        style: TextStyle(
+                          fontSize:
+                              Theme.of(context).textTheme.bodyLarge?.fontSize,
+                        ),
                       ),
                     ),
-                    Text(
-                      report["spaceAvailable"] ?? "",
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.primary,
+                    Expanded(
+                      flex: 1,
+                      child: Text(
+                        report["spaceAvailable"] ?? "",
+                        style: TextStyle(
+                          fontSize: Theme.of(context)
+                              .textTheme
+                              .headlineMedium
+                              ?.fontSize,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
                       ),
                     ),
                   ],
                 ),
+                const Divider(),
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Apparent Width of Unerupted Premolar: ",
-                      style: TextStyle(
-                        fontSize: 20,
+                    Expanded(
+                      flex: 2,
+                      child: Text(
+                        "Apparent Width of Unerupted Premolar: ",
+                        style: TextStyle(
+                          fontSize:
+                              Theme.of(context).textTheme.bodyLarge?.fontSize,
+                        ),
                       ),
                     ),
-                    Text(
-                      report["apparentWidthOfUneruptedPremolar"] ?? "",
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.primary,
+                    Expanded(
+                      flex: 1,
+                      child: Text(
+                        report["apparentWidthOfUneruptedPremolar"] ?? "",
+                        style: TextStyle(
+                          fontSize: Theme.of(context)
+                              .textTheme
+                              .headlineMedium
+                              ?.fontSize,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
                       ),
                     ),
                   ],
@@ -276,7 +308,7 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
             child: Text(
               "Prediction: ",
               style: TextStyle(
-                fontSize: 30,
+                fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
                 color: Theme.of(context).colorScheme.onPrimary,
               ),
             ),
@@ -293,9 +325,11 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
               children: [
                 Text(
                   report["prediction"] ?? "",
-                  style: const TextStyle(
-                    fontSize: 20,
+                  style: TextStyle(
+                    fontSize:
+                        Theme.of(context).textTheme.headlineSmall?.fontSize,
                     fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
               ],
