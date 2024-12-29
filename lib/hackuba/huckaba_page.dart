@@ -33,23 +33,23 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
               children: [
                 const Text("Introduction: ",
                     style: TextStyle(
-                        fontSize: 50,
+                        fontSize: 40,
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline)),
                 const Text(
                   "To predict the space discrepancy with regards to unerupted first premolars while planning a unilateral space maintainer with the help of IOPA.",
-                  style: TextStyle(fontSize: 40),
+                  style: TextStyle(fontSize: 30),
                 ),
                 const SizedBox(height: 20),
                 Text("Armanentarium: ",
                     style: TextStyle(
-                        fontSize: 50,
+                        fontSize: 40,
                         color: colorScheme.onSurface,
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline)),
                 Text(
                   "Study model\nScale\nDivider\nIOPA of the quadrant in which space maintainer(unilateral) is planned",
-                  style: TextStyle(fontSize: 40, color: colorScheme.onSurface),
+                  style: TextStyle(fontSize: 30, color: colorScheme.onSurface),
                 ),
                 const SizedBox(height: 20),
                 GridView.count(
