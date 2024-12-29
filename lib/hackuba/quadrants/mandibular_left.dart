@@ -65,12 +65,14 @@ class _MandibularLeftPageState extends State<MandibularLeftPage> {
               ),
             ],
           )
-              : Column(
-            children: [
-              _buildInputSection(context),
-              _buildReportSection(context),
-            ],
-          );
+              : SingleChildScrollView(
+                child: Column(
+                            children: [
+                _buildInputSection(context),
+                _buildReportSection(context),
+                            ],
+                          ),
+              );
         },
       ),
     );

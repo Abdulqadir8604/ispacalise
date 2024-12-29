@@ -65,12 +65,14 @@ class _MaxillaryRightPageState extends State<MaxillaryRightPage> {
               ),
             ],
           )
-              : Column(
-            children: [
-              _buildInputSection(context),
-              _buildReportSection(context),
-            ],
-          );
+              : SingleChildScrollView(
+                child: Column(
+                            children: [
+                _buildInputSection(context),
+                _buildReportSection(context),
+                            ],
+                          ),
+              );
         },
       ),
     );
