@@ -39,9 +39,8 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
         backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
         title: Text('Huckaba Analysis: ${widget.huckabaData["title"]}',
             style: TextStyle(
-                color: Colors.black,
+                color: Theme.of(context).colorScheme.onSurface,
                 fontSize: Theme.of(context).textTheme.titleMedium?.fontSize)),
-        actionsIconTheme: IconThemeData(color: Theme.of(context).colorScheme.primary),
         actions: [
           IconButton(
               onPressed: () {

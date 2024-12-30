@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ispacalise/service/slide_transition.dart';
 import 'package:ispacalise/ui/mbutton.dart';
 
 import 'quadrants/huckaba_quadrants.dart';
@@ -17,8 +18,13 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-        title: Text('Huckaba Analysis',
-            style: TextStyle(color: Colors.black, fontSize: Theme.of(context).textTheme.titleLarge?.fontSize)),
+        title: Text(
+          'Huckaba Analysis',
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onSurface,
+            fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
+          ),
+        ),
       ),
       body: SizedBox(
         width: double.infinity,
@@ -28,25 +34,31 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Introduction: ",
+                Text("Introduction: ",
                     style: TextStyle(
-                        fontSize: 30,
+                        fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline)),
                 Text(
                   "To predict the space discrepancy with regards to unerupted first premolars while planning a unilateral space maintainer with the help of IOPA.",
-                  style: TextStyle(fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,),
+                  style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 Text("Armanentarium: ",
                     style: TextStyle(
-                        fontSize: 30,
+                        fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
                         color: colorScheme.onSurface,
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline)),
                 Text(
                   "Study model\nScale\nDivider\nIOPA of the quadrant in which space maintainer(unilateral) is planned",
-                  style: TextStyle(fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize, color: colorScheme.onSurface),
+                  style: TextStyle(
+                      fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
+                      fontStyle: FontStyle.italic,
+                      color: colorScheme.onSurface),
                 ),
                 const SizedBox(height: 20),
                 GridView.count(
@@ -64,11 +76,12 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => const HuckabaQuads(
-                              huckabaData: {"x1": 54, "x2": 54, "y2": 14, "title": "Maxillary Right"},
-                            ),
-                          ),
+                          huckabaAnalPageRouteBuilder(context, {
+                            "x1": 54,
+                            "x2": 54,
+                            "y2": 14,
+                            "title": "Maxillary Right"
+                          }),
                         );
                       },
                       text: 'Maxillary Right',
@@ -79,11 +92,12 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => const HuckabaQuads(
-                              huckabaData: {"x1": 64, "x2": 64, "y2": 24, "title": "Maxillary Left"},
-                            ),
-                          ),
+                          huckabaAnalPageRouteBuilder(context, {
+                            "x1": 64,
+                            "x2": 64,
+                            "y2": 24,
+                            "title": "Maxillary Left"
+                          }),
                         );
                       },
                       text: 'Maxillary Left',
@@ -94,11 +108,12 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => const HuckabaQuads(
-                              huckabaData: {"x1": 84, "x2": 84, "y2": 44, "title": "Mandibular Right"},
-                            ),
-                          ),
+                          huckabaAnalPageRouteBuilder(context, {
+                            "x1": 84,
+                            "x2": 84,
+                            "y2": 44,
+                            "title": "Mandibular Right"
+                          }),
                         );
                       },
                       text: 'Mandibular Right',
@@ -109,11 +124,12 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => const HuckabaQuads(
-                              huckabaData: {"x1": 74, "x2": 74, "y2": 34, "title": "Mandibular Left"},
-                            ),
-                          ),
+                          huckabaAnalPageRouteBuilder(context, {
+                            "x1": 74,
+                            "x2": 74,
+                            "y2": 34,
+                            "title": "Mandibular Left"
+                          }),
                         );
                       },
                       text: 'Mandibular Left',

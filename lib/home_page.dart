@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ispacalise/ui/mbutton.dart';
 
 import 'hackuba/huckaba_page.dart';
+import 'service/slide_transition.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,7 +15,13 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
         centerTitle: true,
-        title: const Text('iSpacalise', style: TextStyle(color: Colors.black, fontSize: 30)),
+        title: Text(
+          'iSpacalise',
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onSurface,
+            fontSize: Theme.of(context).textTheme.headlineSmall?.fontSize,
+          ),
+        ),
       ),
       body: SizedBox(
         width: double.infinity,
@@ -28,9 +35,7 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const HuckabaAnalysisPage(),
-                  ),
+                  huckabaPageRouteBuilder(context),
                 );
               },
               text: 'Huckaba Analysis',
