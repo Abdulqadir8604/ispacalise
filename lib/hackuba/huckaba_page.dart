@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ispacalise/ui/MButton.dart';
+import 'package:ispacalise/ui/mbutton.dart';
 
 import 'quadrants/huckaba_quadrants.dart';
 

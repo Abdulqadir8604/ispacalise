@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 import '../../service/huckaba.dart';
-import '../../ui/MButton.dart';
+import '../../ui/mbutton.dart';
 
 class HuckabaQuads extends StatefulWidget {
   final Map huckabaData;

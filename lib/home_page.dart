@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:ispacalise/ui/MButton.dart';
+import 'package:ispacalise/ui/mbutton.dart';
 
 import 'hackuba/huckaba_page.dart';
 
