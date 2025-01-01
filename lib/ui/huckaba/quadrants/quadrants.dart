@@ -115,7 +115,7 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 widget.hucabaData["title"] as String,
