@@ -23,19 +23,21 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
 
   void calculateY1() {
     setState(() {
-      errorMessage = null; // Reset error message
-      final double x1 = double.tryParse(x1Controller.text) ?? 0.0;
-      final double x2 = double.tryParse(x2Controller.text) ?? 0.0;
-      final double y2 = double.tryParse(y2Controller.text) ?? 0.0;
+      try {
+        errorMessage = null; // Reset error message
+        final double x1 = double.tryParse(x1Controller.text) ?? 0.0;
+        final double x2 = double.tryParse(x2Controller.text) ?? 0.0;
+        final double y2 = double.tryParse(y2Controller.text) ?? 0.0;
 
-      if (x1 == 0 || x2 == 0 || y2 == 0) {
-        throw Exception("Please enter valid non-zero values for all fields.");
-      }
+        if (x1 == 0 || x2 == 0 || y2 == 0) {
+          throw Exception("Please enter valid non-zero values for all fields.");
+        }
 
-      final HuckabaAnalysis analysis = HuckabaAnalysis(x1: x1, x2: x2, y2: y2);
-      y1 = analysis.calculateY1();
-      report = Map<String, String>.from(analysis.generateReport());
-      try {} catch (e) {
+        final HuckabaAnalysis analysis =
+            HuckabaAnalysis(x1: x1, x2: x2, y2: y2);
+        y1 = analysis.calculateY1();
+        report = Map<String, String>.from(analysis.generateReport());
+      } catch (e) {
         errorMessage = e.toString();
         y1 = 0.0;
         report = {};
@@ -76,19 +78,21 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
       body: OrientationBuilder(
         builder: (context, orientation) {
           return orientation == Orientation.landscape
-              ? Row(
-                  children: [
-                    Expanded(child: _buildInputSection()),
-                    if (report.isNotEmpty)
-                      Expanded(
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeInOut,
-                          child: _buildReportSection(),
+              ? SingleChildScrollView(
+                child: Row(
+                    children: [
+                      Expanded(child: _buildInputSection()),
+                      if (report.isNotEmpty)
+                        Expanded(
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeInOut,
+                            child: _buildReportSection(),
+                          ),
                         ),
-                      ),
-                  ],
-                )
+                    ],
+                  ),
+              )
               : SingleChildScrollView(
                   child: Column(
                     children: [
@@ -120,8 +124,7 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
               Text(
                 widget.hucabaData["title"] as String,
                 style: TextStyle(
-                  fontSize:
-                  Theme.of(context).textTheme.bodyLarge?.fontSize,
+                  fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -197,8 +200,7 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
             report["prediction"] ?? "",
             style: TextStyle(
               fontStyle: FontStyle.italic,
-              fontSize:
-                  Theme.of(context).textTheme.headlineMedium?.fontSize,
+              fontSize: Theme.of(context).textTheme.headlineMedium?.fontSize,
               fontWeight: FontWeight.bold,
               color: Theme.of(context).colorScheme.primary,
             ),
