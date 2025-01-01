@@ -1,10 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:ispacalise/ui/mbutton.dart';
-
-import 'hackuba/huckaba_page.dart';
-import 'service/slide_transition.dart';
+import 'util/mbutton.dart';
+import 'util/slide_transition.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -30,15 +28,27 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             MButton(
-              height: 50,
-              width: 200,
+              height: 150,
+              width: 250,
               onPressed: () {
                 Navigator.push(
                   context,
-                  huckabaPageRouteBuilder(context),
+                  tanakaJohnstonPageRouteBuilder(context),
                 );
               },
-              text: 'Huckaba Analysis',
+              text: 'Tanaka Johnston Analysis\n (working prototype without formula)',
+            ),
+            const SizedBox(height: 20),
+            MButton(
+              height: 100,
+              width: 250,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  hucabaPageRouteBuilder(context),
+                );
+              },
+              text: 'Hucaba Analysis',
             ),
           ],
         ),

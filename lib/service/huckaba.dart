@@ -23,10 +23,10 @@ class HuckabaAnalysis {
   Map generateReport() {
     double y1 = calculateY1();
     return {
-      "x1": x1,
-      "x2": x2,
-      "y2": y2,
-      "y1": x1,
+      "x1": x1.toString(),
+      "x2": x2.toString(),
+      "y2": y2.toString(),
+      "y1": x1.toString(),
       "prediction": x1 > y1
           ? "Adequate space, no regaining needed"
           : "Inadequate space, space regainer required.",

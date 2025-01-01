@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:ispacalise/home_page.dart';
+
+import 'provider/HuckabaState.dart';
+import 'provider/TanakaJohnstonState.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,21 +12,27 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'iSpacalise',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => TanakaJohnstonState()),
+        ChangeNotifierProvider(create: (_) => HuckabaState()),
+      ],
+      child: MaterialApp(
+        title: 'iSpacalise',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+          useMaterial3: true,
+        ),
+        darkTheme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.green, brightness: Brightness.dark),
+          useMaterial3: true,
+        ),
+        home: const HomePage(),
       ),
-      darkTheme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green, brightness: Brightness.dark),
-        useMaterial3: true,
-      ),
-      home: const HomePage(),
     );
   }
 }

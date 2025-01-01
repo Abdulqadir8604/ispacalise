@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ispacalise/service/slide_transition.dart';
-import 'package:ispacalise/ui/mbutton.dart';
+import 'package:ispacalise/util/slide_transition.dart';
 
-import 'quadrants/huckaba_quadrants.dart';
+import '../../util/mbutton.dart';
+import 'quadrants/quadrants.dart';
 
 class HuckabaAnalysisPage extends StatefulWidget {
   const HuckabaAnalysisPage({super.key});
@@ -19,7 +19,7 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
         title: Text(
-          'Huckaba Analysis',
+          'Hucaba Analysis',
           style: TextStyle(
             color: Theme.of(context).colorScheme.onSurface,
             fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
@@ -76,7 +76,7 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          huckabaAnalPageRouteBuilder(context, {
+                          hucabaAnalPageRouteBuilder(context, {
                             "x1": 54,
                             "x2": 54,
                             "y2": 14,
@@ -92,7 +92,7 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          huckabaAnalPageRouteBuilder(context, {
+                          hucabaAnalPageRouteBuilder(context, {
                             "x1": 64,
                             "x2": 64,
                             "y2": 24,
@@ -108,7 +108,7 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          huckabaAnalPageRouteBuilder(context, {
+                          hucabaAnalPageRouteBuilder(context, {
                             "x1": 84,
                             "x2": 84,
                             "y2": 44,
@@ -124,7 +124,7 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          huckabaAnalPageRouteBuilder(context, {
+                          hucabaAnalPageRouteBuilder(context, {
                             "x1": 74,
                             "x2": 74,
                             "y2": 34,
