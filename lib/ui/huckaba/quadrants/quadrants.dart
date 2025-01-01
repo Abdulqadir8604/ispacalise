@@ -60,10 +60,10 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
         title: Text(
-          'Hucaba Analysis: ${widget.hucabaData["title"] as String}',
+          'Hucaba Analysis',
           style: TextStyle(
             color: Theme.of(context).colorScheme.onSurface,
-            fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+            fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
           ),
         ),
         actions: [
@@ -111,6 +111,24 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(height: 8),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                widget.hucabaData["title"] as String,
+                style: TextStyle(
+                  fontSize:
+                  Theme.of(context).textTheme.bodyLarge?.fontSize,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 8),
         _buildSectionTitle("Measure the following on the study model:"),
         const SizedBox(height: 16),
         MTextField(

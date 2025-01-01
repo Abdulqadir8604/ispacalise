@@ -16,7 +16,7 @@ class MTextField extends StatelessWidget {
         controller: controller,
         keyboardType: TextInputType.number,
         onTapOutside: (focus) {
-          FocusScope.of(context).requestFocus(FocusNode());
+          // FocusScope.of(context).requestFocus(FocusNode());
         },
         decoration: InputDecoration(
           labelText: label,
