@@ -65,14 +65,11 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                   crossAxisCount: 2,
                   shrinkWrap: true,
                   childAspectRatio: 2,
-                  padding: const EdgeInsets.all(8),
                   mainAxisSpacing: 8,
                   physics: const NeverScrollableScrollPhysics(),
                   crossAxisSpacing: 8,
                   children: [
                     MButton(
-                      height: 100,
-                      width: 170,
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -87,8 +84,6 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                       text: 'Maxillary Right',
                     ),
                     MButton(
-                      height: 100,
-                      width: 170,
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -103,8 +98,6 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                       text: 'Maxillary Left',
                     ),
                     MButton(
-                      height: 100,
-                      width: 170,
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -119,8 +112,6 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                       text: 'Mandibular Right',
                     ),
                     MButton(
-                      height: 100,
-                      width: 170,
                       onPressed: () {
                         Navigator.push(
                           context,

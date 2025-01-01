@@ -18,12 +18,26 @@ class SummaryPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "T & J Analysis - $type - Report",
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.onSurface,
-            fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
-          ),
+        toolbarHeight: 70,
+        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
+        title:  Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "T & J Analysis",
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
+                fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              type,
+              style: TextStyle(
+                fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
+              ),
+            ),
+          ],
         ),
         leading: IconButton(
           onPressed: () {

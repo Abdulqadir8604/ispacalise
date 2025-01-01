@@ -21,14 +21,13 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: SizedBox(
-        width: double.infinity,
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             MButton(
-              height: 150,
+              height: 100,
               width: 250,
               onPressed: () {
                 Navigator.push(
@@ -36,7 +35,7 @@ class HomePage extends StatelessWidget {
                   tanakaJohnstonPageRouteBuilder(context),
                 );
               },
-              text: 'Tanaka Johnston Analysis\n (working prototype without formula)',
+              text: 'Tanaka & Johnston\nAnalysis',
             ),
             const SizedBox(height: 20),
             MButton(

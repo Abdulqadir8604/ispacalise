@@ -71,6 +71,8 @@ class _Page1State extends State<Page1> {
 
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 70,
+        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
         actions: [
           IconButton(
             onPressed: () {
@@ -83,12 +85,24 @@ class _Page1State extends State<Page1> {
             icon: const Icon(Icons.refresh),
           ),
         ],
-        title: Text(
-          "T & J analysis - ${widget.type} - (1)",
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.onSurface,
-            fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
-          ),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "T & J Analysis",
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
+                fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              "${widget.type} - (1)",
+              style: TextStyle(
+                fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
+              ),
+            ),
+          ],
         ),
         leading: IconButton(
           onPressed: () {

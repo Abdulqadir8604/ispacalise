@@ -49,12 +49,26 @@ class _Page3State extends State<Page3> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "T & J Analysis - ${widget.type} - (3)",
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.onSurface,
-            fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
-          ),
+        toolbarHeight: 70,
+        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
+        title:  Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "T & J Analysis",
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
+                fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              "${widget.type} - (3)",
+              style: TextStyle(
+                fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
+              ),
+            ),
+          ],
         ),
         actions: [
           IconButton(
