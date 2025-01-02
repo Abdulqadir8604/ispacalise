@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+
 class TanakaJohnstonState extends ChangeNotifier {
   final Map<String, String> formData = {};
+  final Map<String, dynamic> mandibularReport = {};
+  final Map<String, dynamic> maxillaryReport = {};
 
   void updateField(String key, String value) {
     formData[key] = value;
@@ -12,6 +15,8 @@ class TanakaJohnstonState extends ChangeNotifier {
 
   void reset() {
     formData.clear();
+    mandibularReport.clear();
+    maxillaryReport.clear();
     notifyListeners();
   }
 }

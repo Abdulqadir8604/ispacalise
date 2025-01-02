@@ -4,8 +4,9 @@ class MTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String label;
   final String hint;
+  final double? labelSize;
   final Null Function(dynamic _) onChanged;
-  const MTextField({super.key, required this.controller, required this.label, required this.hint, required this.onChanged});
+  const MTextField({super.key, required this.controller, required this.label, required this.hint, required this.onChanged, this.labelSize});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,10 @@ class MTextField extends StatelessWidget {
         },
         decoration: InputDecoration(
           labelText: label,
+          labelStyle: TextStyle(
+            fontSize: labelSize ?? Theme.of(context).textTheme.bodyLarge?.fontSize,
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
           hintText: hint,
           hintStyle: TextStyle(
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),

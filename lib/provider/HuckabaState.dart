@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import '../service/huckaba.dart';
+import '../ui/huckaba/service/huckaba_analysis.dart';
 
 class HuckabaState extends ChangeNotifier {
   double _x1 = 0.0;
@@ -32,7 +32,7 @@ class HuckabaState extends ChangeNotifier {
 
   void calculateY1() {
     if (_x1 > 0 && _x2 > 0 && _y2 > 0) {
-      final analysis = HuckabaAnalysis(x1: _x1, x2: _x2, y2: _y2);
+      final analysis = HuckabaService(x1: _x1, x2: _x2, y2: _y2);
       _y1 = double.parse(analysis.calculateY1().toStringAsFixed(2));
       _report = Map<String, String>.from(analysis.generateReport());
       notifyListeners();

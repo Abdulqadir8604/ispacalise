@@ -79,6 +79,9 @@ class _TanakaJohnstonAnalysisPageState
                       height: 100,
                       width: 170,
                       onPressed: () {
+                        final state = Provider.of<TanakaJohnstonState>(context,
+                            listen: false);
+                        state.reset();
                         Navigator.push(
                           context,
                           tanakaJohnstonAnalPageRouteBuilder(
@@ -86,17 +89,17 @@ class _TanakaJohnstonAnalysisPageState
                             "Mandibular",
                             {
                               // 1st page
-                              "1-1": 41,
-                              "1-2": 42,
+                              "1-1": 42,
+                              "1-2": 41,
                               "1-3": 31,
                               "1-4": 32,
                               // 2nd page
-                              "2-1-1": 85,
-                              "2-1-2": 83,
-                              "2-2": 83,
-                              "2-3": 73,
-                              "2-4-1": 73,
-                              "2-4-2": 75,
+                              "3-1-1": 85,
+                              "3-1-2": 83,
+                              "3-2": 83,
+                              "3-3": 73,
+                              "3-4-1": 73,
+                              "3-4-2": 75,
                             },
                           ),
                         );
@@ -107,6 +110,9 @@ class _TanakaJohnstonAnalysisPageState
                       height: 100,
                       width: 170,
                       onPressed: () {
+                        final state = Provider.of<TanakaJohnstonState>(context,
+                            listen: false);
+                        state.reset();
                         Navigator.push(
                           context,
                           tanakaJohnstonAnalPageRouteBuilder(
@@ -114,17 +120,17 @@ class _TanakaJohnstonAnalysisPageState
                             "Maxillary",
                             {
                               // 1st page
-                              "1-1": 41,
-                              "1-2": 42,
+                              "1-1": 42,
+                              "1-2": 41,
                               "1-3": 31,
                               "1-4": 32,
                               // 2nd page
-                              "2-1-1": 55,
-                              "2-1-2": 53,
-                              "2-2": 53,
-                              "2-3": 63,
-                              "2-4-1": 63,
-                              "2-4-2": 65,
+                              "3-1-1": 55,
+                              "3-1-2": 53,
+                              "3-2": 53,
+                              "3-3": 63,
+                              "3-4-1": 63,
+                              "3-4-2": 65,
                             },
                           ),
                         );

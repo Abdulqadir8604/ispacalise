@@ -1,10 +1,10 @@
 // Class to handle Hukaba's formula computation
-class HuckabaAnalysis {
+class HuckabaService {
   final double x1; // Actual width of the primary molar
   final double x2; // Apparent width of the primary molar
   final double y2; // Apparent width of the unerupted premolar
 
-  HuckabaAnalysis({
+  HuckabaService({
     required this.x1,
     required this.x2,
     required this.y2,
@@ -39,22 +39,22 @@ class HuckabaAnalysis {
 // Example usage for all quadrants
 void main() {
   // Mandibular Right Quadrant
-  HuckabaAnalysis mandibularRight = HuckabaAnalysis(x1: 75, x2: 68, y2: 80);
+  HuckabaService mandibularRight = HuckabaService(x1: 75, x2: 68, y2: 80);
   print("\n--- Analysis for Mandibular Right Quadrant ---");
   print(mandibularRight.generateReport());
 
   // Mandibular Left Quadrant
-  HuckabaAnalysis mandibularLeft = HuckabaAnalysis(x1: 74, x2: 67, y2: 81);
+  HuckabaService mandibularLeft = HuckabaService(x1: 74, x2: 67, y2: 81);
   print("\n--- Analysis for Mandibular Left Quadrant ---");
   print(mandibularLeft.generateReport());
 
   // Maxillary Right Quadrant
-  HuckabaAnalysis maxillaryRight = HuckabaAnalysis(x1: 72, x2: 66, y2: 79);
+  HuckabaService maxillaryRight = HuckabaService(x1: 72, x2: 66, y2: 79);
   print("\n--- Analysis for Maxillary Right Quadrant ---");
   print(maxillaryRight.generateReport());
 
   // Maxillary Left Quadrant
-  HuckabaAnalysis maxillaryLeft = HuckabaAnalysis(x1: 73, x2: 65, y2: 80);
+  HuckabaService maxillaryLeft = HuckabaService(x1: 73, x2: 65, y2: 80);
   print("\n--- Analysis for Maxillary Left Quadrant ---");
   print(maxillaryLeft.generateReport());
 }

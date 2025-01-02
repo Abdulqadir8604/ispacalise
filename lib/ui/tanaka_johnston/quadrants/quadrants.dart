@@ -48,11 +48,11 @@ class _TanakaJohnstonQuadsState extends State<TanakaJohnstonQuads> {
           Page2(
             type: widget.type,
             pageController: _pageController,
-            tanakaData: widget.tanakaData,
           ),
           Page3(
             type: widget.type,
             pageController: _pageController,
+            tanakaData: widget.tanakaData,
           ),
           SummaryPage(
             type: widget.type,

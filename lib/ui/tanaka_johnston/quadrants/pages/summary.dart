@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../provider/TanakaJohnstonState.dart';
 
-class SummaryPage extends StatelessWidget {
+class SummaryPage extends StatefulWidget {
   final String type;
   final PageController pageController;
 
@@ -13,122 +13,263 @@ class SummaryPage extends StatelessWidget {
   });
 
   @override
+  State<SummaryPage> createState() => _SummaryPageState();
+}
+
+class _SummaryPageState extends State<SummaryPage> {
+  @override
+  void initState() {
+    super.initState();
+    final state = Provider.of<TanakaJohnstonState>(context, listen: false);
+    final spaceRequired =
+        double.tryParse(state.getField("Space Required")) ?? 0.0;
+    final spaceAvailable =
+        double.tryParse(state.getField("Space Available")) ?? 0.0;
+    final arcLengthDiscrepancy = spaceRequired - spaceAvailable;
+
+    state.updateField(
+        "Arc length discrepancy", arcLengthDiscrepancy.toString());
+
+    String prediction;
+    if (arcLengthDiscrepancy < 0) {
+      prediction =
+          "Crowding";
+    } else if (arcLengthDiscrepancy > 0) {
+      prediction =
+          "Spacing";
+    } else {
+      prediction =
+          "No discrepancy";
+    }
+
+    state.updateField("Prediction", prediction);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final state = Provider.of<TanakaJohnstonState>(context);
 
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 70,
-        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-        title:  Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "T & J Analysis",
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onSurface,
-                fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
+    return PopScope(
+      onPopInvoked: (_) {
+        widget.pageController.previousPage(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+        );
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 70,
+          automaticallyImplyLeading: false,
+          backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "T & J Analysis",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
+                ),
               ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              type,
-              style: TextStyle(
-                fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
-              ),
-            ),
-          ],
-        ),
-        leading: IconButton(
-          onPressed: () {
-            pageController.previousPage(
-              duration: const Duration(milliseconds: 400),
-              curve: Curves.easeInOut,
-            );
-          },
-          icon: const Icon(Icons.arrow_back),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          state.reset();
-          pageController.jumpToPage(0);
-        },
-        child: const Icon(Icons.refresh),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              width: double.infinity,
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                "Report:",
+              const SizedBox(height: 4),
+              Text(
+                widget.type,
                 style: TextStyle(
                   fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
-                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+              ),
+            ],
+          ),
+        ),
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.all(2.2),
+          child: FloatingActionButton(
+            onPressed: () {
+              state.reset();
+              widget.pageController.jumpToPage(0);
+            },
+            child: const Icon(Icons.refresh),
+          ),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(16),
+                      child: Text(
+                        "Report:",
+                        style: TextStyle(
+                          fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              "Space Required:",
+                              style: TextStyle(
+                                fontSize:
+                                    Theme.of(context).textTheme.bodyLarge?.fontSize,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              "${double.parse(state.getField("Space Required")).toStringAsFixed(2)} mm",
+                              style: TextStyle(
+                                fontSize: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                                    ?.fontSize,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Divider(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              "Space available: ",
+                              style: TextStyle(
+                                fontSize:
+                                    Theme.of(context).textTheme.bodyLarge?.fontSize,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              "${double.parse(state.getField("Space Available")).toStringAsFixed(2)} mm",
+                              style: TextStyle(
+                                fontSize: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                                    ?.fontSize,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Divider(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              "Arc length discrepancy: ",
+                              style: TextStyle(
+                                fontSize:
+                                Theme.of(context).textTheme.bodyLarge?.fontSize,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              "${double.parse(state.getField("Arc length discrepancy")).toStringAsFixed(2)} mm",
+                              style: TextStyle(
+                                fontSize: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                                    ?.fontSize,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Divider(),
+                    Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(16),
+                      child: Text(
+                        "Prediction:",
+                        style: TextStyle(
+                          fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(8),
+                      child: Text(
+                        state.getField("Prediction"),
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: Theme.of(context).textTheme.headlineSmall?.fontSize,
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Space required: ${state.getField("Space required")} mm",
-                    style: TextStyle(
-                      fontSize:
-                      Theme.of(context).textTheme.headlineSmall?.fontSize,
+                  ElevatedButton(
+                    onPressed: () => widget.pageController.previousPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
                     ),
-                  ),
-                  Text(
-                    "Space available: ${state.getField("Space Available")} mm",
-                    style: TextStyle(
-                      fontSize:
-                      Theme.of(context).textTheme.headlineSmall?.fontSize,
+                    style: ButtonStyle(
+                      fixedSize: WidgetStateProperty.resolveWith(
+                            (states) => const Size(150, 60),
+                      ),
+                      shape: WidgetStateProperty.resolveWith(
+                            (states) => RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
+                      backgroundColor: WidgetStateProperty.resolveWith(
+                              (states) => Theme.of(context).colorScheme.secondary),
                     ),
-                  ),
-                  Text(
-                    "Arc length discrepancy: ${state.getField("Arc length discrepancy")} mm",
-                    style: TextStyle(
-                      fontSize:
-                      Theme.of(context).textTheme.headlineSmall?.fontSize,
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   ),
                 ],
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              width: double.infinity,
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                "Prediction:",
-                style: TextStyle(
-                  fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
-                  color: Theme.of(context).colorScheme.onPrimary,
-                ),
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              height: 100,
-              padding: const EdgeInsets.all(8),
-              child: Text(
-                state.getField("Prediction"),
-                style: TextStyle(
-                  fontSize: Theme.of(context).textTheme.headlineSmall?.fontSize,
-                  fontStyle: FontStyle.italic,
-                ),
               ),
             ),
           ],

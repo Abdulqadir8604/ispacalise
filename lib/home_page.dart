@@ -32,6 +32,18 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
+                  radiographicMixedDentitionPageRouteBuilder(context),
+                );
+              },
+              text: 'Radiographic Mixed\nDentition Analysis',
+            ),
+            const SizedBox(height: 20),
+            MButton(
+              height: 100,
+              width: 250,
+              onPressed: () {
+                Navigator.push(
+                  context,
                   tanakaJohnstonPageRouteBuilder(context),
                 );
               },

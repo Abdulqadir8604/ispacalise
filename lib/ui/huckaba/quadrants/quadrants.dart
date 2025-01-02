@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../service/huckaba.dart';
 import '../../../util/mtextfield.dart';
 import '../../../util/mbutton.dart';
+import '../service/huckaba_analysis.dart';
 
 class HuckabaQuads extends StatefulWidget {
   final Map<String, Object> hucabaData;
@@ -33,8 +33,8 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
           throw Exception("Please enter valid non-zero values for all fields.");
         }
 
-        final HuckabaAnalysis analysis =
-            HuckabaAnalysis(x1: x1, x2: x2, y2: y2);
+        final HuckabaService analysis =
+            HuckabaService(x1: x1, x2: x2, y2: y2);
         y1 = analysis.calculateY1();
         report = Map<String, String>.from(analysis.generateReport());
       } catch (e) {
