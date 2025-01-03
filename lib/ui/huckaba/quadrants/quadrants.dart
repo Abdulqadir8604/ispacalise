@@ -22,6 +22,7 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
   String? errorMessage;
 
   void calculateY1() {
+    FocusScope.of(context).unfocus();
     setState(() {
       try {
         errorMessage = null; // Reset error message

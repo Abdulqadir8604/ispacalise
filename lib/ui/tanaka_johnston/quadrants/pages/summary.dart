@@ -32,14 +32,11 @@ class _SummaryPageState extends State<SummaryPage> {
 
     String prediction;
     if (arcLengthDiscrepancy < 0) {
-      prediction =
-          "Crowding";
+      prediction = "Crowding";
     } else if (arcLengthDiscrepancy > 0) {
-      prediction =
-          "Spacing";
+      prediction = "Spacing";
     } else {
-      prediction =
-          "No discrepancy";
+      prediction = "No discrepancy";
     }
 
     state.updateField("Prediction", prediction);
@@ -109,13 +106,15 @@ class _SummaryPageState extends State<SummaryPage> {
                       child: Text(
                         "Report:",
                         style: TextStyle(
-                          fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
+                          fontSize:
+                              Theme.of(context).textTheme.bodyLarge?.fontSize,
                           color: Theme.of(context).colorScheme.onPrimary,
                         ),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 8),
                       child: Row(
                         children: [
                           Expanded(
@@ -123,8 +122,10 @@ class _SummaryPageState extends State<SummaryPage> {
                             child: Text(
                               "Space Required:",
                               style: TextStyle(
-                                fontSize:
-                                    Theme.of(context).textTheme.bodyLarge?.fontSize,
+                                fontSize: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge
+                                    ?.fontSize,
                               ),
                             ),
                           ),
@@ -147,7 +148,8 @@ class _SummaryPageState extends State<SummaryPage> {
                     ),
                     const Divider(),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 8),
                       child: Row(
                         children: [
                           Expanded(
@@ -155,8 +157,10 @@ class _SummaryPageState extends State<SummaryPage> {
                             child: Text(
                               "Space available: ",
                               style: TextStyle(
-                                fontSize:
-                                    Theme.of(context).textTheme.bodyLarge?.fontSize,
+                                fontSize: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge
+                                    ?.fontSize,
                               ),
                             ),
                           ),
@@ -179,7 +183,8 @@ class _SummaryPageState extends State<SummaryPage> {
                     ),
                     const Divider(),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 8),
                       child: Row(
                         children: [
                           Expanded(
@@ -187,8 +192,10 @@ class _SummaryPageState extends State<SummaryPage> {
                             child: Text(
                               "Arc length discrepancy: ",
                               style: TextStyle(
-                                fontSize:
-                                Theme.of(context).textTheme.bodyLarge?.fontSize,
+                                fontSize: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge
+                                    ?.fontSize,
                               ),
                             ),
                           ),
@@ -220,7 +227,8 @@ class _SummaryPageState extends State<SummaryPage> {
                       child: Text(
                         "Prediction:",
                         style: TextStyle(
-                          fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
+                          fontSize:
+                              Theme.of(context).textTheme.bodyLarge?.fontSize,
                           color: Theme.of(context).colorScheme.onPrimary,
                         ),
                       ),
@@ -232,7 +240,10 @@ class _SummaryPageState extends State<SummaryPage> {
                         state.getField("Prediction"),
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.primary,
-                          fontSize: Theme.of(context).textTheme.headlineSmall?.fontSize,
+                          fontSize: Theme.of(context)
+                              .textTheme
+                              .headlineSmall
+                              ?.fontSize,
                           fontWeight: FontWeight.bold,
                           fontStyle: FontStyle.italic,
                         ),
@@ -248,21 +259,24 @@ class _SummaryPageState extends State<SummaryPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
-                    onPressed: () => widget.pageController.previousPage(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                    ),
+                    onPressed: () {
+                      FocusScope.of(context).unfocus();
+                      widget.pageController.previousPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    },
                     style: ButtonStyle(
                       fixedSize: WidgetStateProperty.resolveWith(
-                            (states) => const Size(150, 60),
+                        (states) => const Size(150, 60),
                       ),
                       shape: WidgetStateProperty.resolveWith(
-                            (states) => RoundedRectangleBorder(
+                        (states) => RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
                       backgroundColor: WidgetStateProperty.resolveWith(
-                              (states) => Theme.of(context).colorScheme.secondary),
+                          (states) => Theme.of(context).colorScheme.secondary),
                     ),
                     child: Icon(
                       Icons.arrow_back,

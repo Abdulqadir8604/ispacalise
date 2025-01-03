@@ -132,7 +132,8 @@ class _Page3State extends State<Page3> {
                       child: Text(
                         "Measure the following on the study model:",
                         style: TextStyle(
-                          fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
+                          fontSize:
+                              Theme.of(context).textTheme.bodyLarge?.fontSize,
                           color: Theme.of(context).colorScheme.onPrimary,
                         ),
                       ),
@@ -144,7 +145,8 @@ class _Page3State extends State<Page3> {
                           controller: controllers[field],
                           onChanged: (value) {
                             state.updateField(field, value);
-                            setState(() {}); // Update space available dynamically
+                            setState(
+                                () {}); // Update space available dynamically
                           },
                         )),
                     const SizedBox(height: 20),
@@ -170,21 +172,24 @@ class _Page3State extends State<Page3> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
-                    onPressed: () => widget.pageController.previousPage(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                    ),
+                    onPressed: () {
+                      FocusScope.of(context).unfocus();
+                      widget.pageController.previousPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    },
                     style: ButtonStyle(
                       fixedSize: WidgetStateProperty.resolveWith(
-                            (states) => const Size(150, 60),
+                        (states) => const Size(150, 60),
                       ),
                       shape: WidgetStateProperty.resolveWith(
-                            (states) => RoundedRectangleBorder(
+                        (states) => RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
                       backgroundColor: WidgetStateProperty.resolveWith(
-                              (states) => Theme.of(context).colorScheme.secondary),
+                          (states) => Theme.of(context).colorScheme.secondary),
                     ),
                     child: Icon(
                       Icons.arrow_back,
@@ -194,29 +199,33 @@ class _Page3State extends State<Page3> {
                   ElevatedButton(
                     onPressed: spaceAvailable > 0
                         ? () {
-                      state.updateField(
-                        "Space Available",
-                        spaceAvailable.toString(),
-                      );
-                      widget.pageController.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                      );
-                    }
+                            FocusScope.of(context).unfocus();
+                            state.updateField(
+                              "Space Available",
+                              spaceAvailable.toString(),
+                            );
+                            widget.pageController.nextPage(
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeInOut,
+                            );
+                          }
                         : null,
                     style: ButtonStyle(
                       fixedSize: WidgetStateProperty.resolveWith(
-                            (states) => const Size(150, 60),
+                        (states) => const Size(150, 60),
                       ),
                       shape: WidgetStateProperty.resolveWith(
-                            (states) => RoundedRectangleBorder(
+                        (states) => RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
                       backgroundColor: WidgetStateProperty.resolveWith(
-                              (states) => spaceAvailable > 0
-                              ? Theme.of(context).colorScheme.primary
-                              : Theme.of(context).colorScheme.primary.withOpacity(0.5),
+                        (states) => spaceAvailable > 0
+                            ? Theme.of(context).colorScheme.primary
+                            : Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withOpacity(0.5),
                       ),
                     ),
                     child: Icon(

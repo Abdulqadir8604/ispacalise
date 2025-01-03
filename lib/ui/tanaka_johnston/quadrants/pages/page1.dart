@@ -174,6 +174,7 @@ class _Page1State extends State<Page1> {
                   ElevatedButton(
                     onPressed: sum > 0
                         ? () {
+                            FocusScope.of(context).unfocus();
                             state.updateField(
                                 "Sum of incisors", sum.toString());
                             widget.pageController.nextPage(

@@ -167,21 +167,24 @@ class _Page2State extends State<Page2> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
-                    onPressed: () => widget.pageController.previousPage(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                    ),
+                    onPressed: () {
+                      FocusScope.of(context).unfocus();
+                      widget.pageController.previousPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    },
                     style: ButtonStyle(
                       fixedSize: WidgetStateProperty.resolveWith(
-                            (states) => const Size(150, 60),
+                        (states) => const Size(150, 60),
                       ),
                       shape: WidgetStateProperty.resolveWith(
-                            (states) => RoundedRectangleBorder(
+                        (states) => RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
                       backgroundColor: WidgetStateProperty.resolveWith(
-                              (states) => Theme.of(context).colorScheme.secondary),
+                          (states) => Theme.of(context).colorScheme.secondary),
                     ),
                     child: Icon(
                       Icons.arrow_back,
@@ -190,6 +193,7 @@ class _Page2State extends State<Page2> {
                   ),
                   ElevatedButton(
                     onPressed: () {
+                      FocusScope.of(context).unfocus();
                       // save the data under certain names
                       state.updateField(
                           "2-1",
