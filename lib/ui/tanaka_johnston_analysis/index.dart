@@ -89,9 +89,9 @@ class _TanakaJohnstonAnalysisPageState
                       height: 100,
                       width: 170,
                       onPressed: () {
-                        final state = Provider.of<TanakaJohnstonState>(context,
-                            listen: false);
-                        state.reset();
+                        // final state = Provider.of<TanakaJohnstonState>(context,
+                        //     listen: false);
+                        // state.reset();
                         Navigator.push(
                           context,
                           tanakaJohnstonAnalPageRouteBuilder(
@@ -120,9 +120,9 @@ class _TanakaJohnstonAnalysisPageState
                       height: 100,
                       width: 170,
                       onPressed: () {
-                        final state = Provider.of<TanakaJohnstonState>(context,
-                            listen: false);
-                        state.reset();
+                        // final state = Provider.of<TanakaJohnstonState>(context,
+                        //     listen: false);
+                        // state.reset();
                         Navigator.push(
                           context,
                           tanakaJohnstonAnalPageRouteBuilder(

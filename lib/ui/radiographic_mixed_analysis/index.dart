@@ -89,6 +89,9 @@ class _RadiographicMixedDentitionAnalysisPageState
                       height: 100,
                       width: 170,
                       onPressed: () {
+                        // final state = Provider.of<RadiographicState>(context,
+                        //     listen: false);
+                        // state.reset();
                         Navigator.push(
                           context,
                           radiographicMixedDentitionAnalPageRouteBuilder(
@@ -135,6 +138,9 @@ class _RadiographicMixedDentitionAnalysisPageState
                       height: 100,
                       width: 170,
                       onPressed: () {
+                        // final state = Provider.of<RadiographicState>(context,
+                        //     listen: false);
+                        // state.reset();
                         Navigator.push(
                           context,
                           radiographicMixedDentitionAnalPageRouteBuilder(

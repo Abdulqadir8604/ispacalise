@@ -96,6 +96,9 @@ class _MoyersAnalysisPageState
                       height: 100,
                       width: 170,
                       onPressed: () {
+                        // final state = Provider.of<MoyersState>(context,
+                        //     listen: false);
+                        // state.reset();
                         Navigator.push(
                           context,
                           moyersAnalysisAnalPageRouteBuilder(
@@ -121,6 +124,9 @@ class _MoyersAnalysisPageState
                       height: 100,
                       width: 170,
                       onPressed: () {
+                        // final state = Provider.of<MoyersState>(context,
+                        //     listen: false);
+                        // state.reset();
                         Navigator.push(
                           context,
                           moyersAnalysisAnalPageRouteBuilder(

@@ -48,7 +48,8 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
               children: [
                 Text("Introduction: ",
                     style: TextStyle(
-                        fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
+                        fontSize:
+                            Theme.of(context).textTheme.titleLarge?.fontSize,
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline)),
                 Text(
@@ -61,7 +62,8 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                 const SizedBox(height: 20),
                 Text("Armanentarium: ",
                     style: TextStyle(
-                        fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
+                        fontSize:
+                            Theme.of(context).textTheme.titleLarge?.fontSize,
                         color: colorScheme.onSurface,
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline)),
@@ -83,6 +85,9 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                   children: [
                     MButton(
                       onPressed: () {
+                        // final state =
+                        //     Provider.of<HuckabaState>(context, listen: false);
+                        // state.reset();
                         Navigator.push(
                           context,
                           hucabaAnalPageRouteBuilder(context, {
@@ -97,6 +102,9 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                     ),
                     MButton(
                       onPressed: () {
+                        // final state =
+                        //     Provider.of<HuckabaState>(context, listen: false);
+                        // state.reset();
                         Navigator.push(
                           context,
                           hucabaAnalPageRouteBuilder(context, {
@@ -111,6 +119,9 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                     ),
                     MButton(
                       onPressed: () {
+                        // final state =
+                        //     Provider.of<HuckabaState>(context, listen: false);
+                        // state.reset();
                         Navigator.push(
                           context,
                           hucabaAnalPageRouteBuilder(context, {
@@ -125,6 +136,9 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
                     ),
                     MButton(
                       onPressed: () {
+                        // final state =
+                        //     Provider.of<HuckabaState>(context, listen: false);
+                        // state.reset();
                         Navigator.push(
                           context,
                           hucabaAnalPageRouteBuilder(context, {
