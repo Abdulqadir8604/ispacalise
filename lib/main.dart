@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ispacalise/provider/RadiographicState.dart';
 import 'package:provider/provider.dart';
 import 'package:ispacalise/home_page.dart';
 
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
     );
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => Radiographicstate()),
         ChangeNotifierProvider(create: (_) => TanakaJohnstonState()),
         ChangeNotifierProvider(create: (_) => HuckabaState()),
       ],

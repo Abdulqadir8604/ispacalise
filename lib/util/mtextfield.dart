@@ -17,9 +17,11 @@ class MTextField extends StatelessWidget {
         controller: controller,
         keyboardType: TextInputType.number,
         onTapOutside: (focus) {
-          // FocusScope.of(context).requestFocus(FocusNode());
+          FocusScope.of(context).requestFocus(FocusNode());
         },
         decoration: InputDecoration(
+          fillColor: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+          filled: true,
           labelText: label,
           labelStyle: TextStyle(
             fontSize: labelSize ?? Theme.of(context).textTheme.bodyLarge?.fontSize,
@@ -29,10 +31,23 @@ class MTextField extends StatelessWidget {
           hintStyle: TextStyle(
             color: Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
           ),
-          border: OutlineInputBorder(
+          focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: Theme.of(context).colorScheme.primary,
             ),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+            ),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+            ),
+            borderRadius: BorderRadius.circular(8),
           ),
         ),
       ),

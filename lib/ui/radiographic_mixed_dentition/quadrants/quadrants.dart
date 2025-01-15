@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:ispacalise/ui/radiographic_mixed_dentition/quadrants/pages/summary1.dart';
 
 import 'pages/page1.dart';
 import 'pages/page2.dart';
 import 'pages/page3.dart';
-import 'pages/summary.dart';
+import 'pages/page4.dart';
+import 'pages/page5.dart';
+import 'pages/summary2.dart';
 
-class TanakaJohnstonQuads extends StatefulWidget {
+class RadiographicMixedDentitionQuads extends StatefulWidget {
   final String type; // Mandibular or Maxillary
-  final Map tanakaData;
+  final Map radiographyData;
 
-  const TanakaJohnstonQuads({super.key, required this.type, required this.tanakaData});
+  const RadiographicMixedDentitionQuads(
+      {super.key, required this.type, required this.radiographyData});
 
   @override
-  _TanakaJohnstonQuadsState createState() => _TanakaJohnstonQuadsState();
+  _RadiographicMixedDentitionQuads createState() =>
+      _RadiographicMixedDentitionQuads();
 }
 
-class _TanakaJohnstonQuadsState extends State<TanakaJohnstonQuads> {
+class _RadiographicMixedDentitionQuads
+    extends State<RadiographicMixedDentitionQuads> {
   final Map<String, String> formData = {};
   final PageController _pageController = PageController();
 
@@ -43,18 +49,33 @@ class _TanakaJohnstonQuadsState extends State<TanakaJohnstonQuads> {
           Page1(
             type: widget.type,
             pageController: _pageController,
-            tanakaData: widget.tanakaData,
+            radioData: widget.radiographyData,
           ),
           Page2(
             type: widget.type,
             pageController: _pageController,
+            radioData: widget.radiographyData,
           ),
           Page3(
             type: widget.type,
             pageController: _pageController,
-            tanakaData: widget.tanakaData,
+            radioData: widget.radiographyData,
           ),
-          SummaryPage(
+          Page4(
+            type: widget.type,
+            pageController: _pageController,
+            radioData: widget.radiographyData,
+          ),
+          Summary1Page(
+            type: widget.type,
+            pageController: _pageController,
+          ),
+          Page5(
+            type: widget.type,
+            pageController: _pageController,
+            radioData: widget.radiographyData,
+          ),
+          Summary2Page(
             type: widget.type,
             pageController: _pageController,
           ),

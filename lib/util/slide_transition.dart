@@ -4,6 +4,7 @@ import 'package:ispacalise/ui/tanaka_johnston/index.dart';
 import '../ui/huckaba/index.dart';
 import '../ui/huckaba/quadrants/quadrants.dart';
 import '../ui/radiographic_mixed_dentition/index.dart';
+import '../ui/radiographic_mixed_dentition/quadrants/quadrants.dart';
 import '../ui/tanaka_johnston/quadrants/quadrants.dart';
 
 
@@ -108,21 +109,21 @@ PageRouteBuilder radiographicMixedDentitionPageRouteBuilder(BuildContext context
   );
 }
 
-// PageRouteBuilder radiographicMixedDentitionAnalPageRouteBuilder(BuildContext context, radiographicData) {
-//   return PageRouteBuilder(
-//     pageBuilder: (context, animation, secondaryAnimation) => RadiographicMixedDentitionQuads(radiographicData: radiographicData),
-//     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-//       const begin = Offset(1.0, 0.0);
-//       const end = Offset.zero;
-//       const curve = Curves.ease;
-//
-//       var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-//       var offsetAnimation = animation.drive(tween);
-//
-//       return SlideTransition(
-//         position: offsetAnimation,
-//         child: child,
-//       );
-//     },
-//   );
-// }
+PageRouteBuilder radiographicMixedDentitionAnalPageRouteBuilder(BuildContext context, type, radiographicData) {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => RadiographicMixedDentitionQuads(type: type, radiographyData: radiographicData),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(1.0, 0.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+      var offsetAnimation = animation.drive(tween);
+
+      return SlideTransition(
+        position: offsetAnimation,
+        child: child,
+      );
+    },
+  );
+}
