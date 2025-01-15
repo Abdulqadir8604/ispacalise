@@ -31,7 +31,7 @@ class _Page2State extends State<Page2> {
     super.initState();
     final state = Provider.of<TanakaJohnstonState>(context, listen: false);
     for (var field in fields) {
-      controllers[field] = TextEditingController(text: state.getField('2-$field'));
+      controllers[field] = TextEditingController(text: state.getField('2${widget.type}-$field'));
     }
 
     // Fetch the data from the previous page that is the incisor sum
@@ -113,7 +113,7 @@ class _Page2State extends State<Page2> {
               onPressed: () {
                 for (var field in fields) {
                   controllers[field]?.clear();
-                  state.updateField('2-$field', "");
+                  state.updateField('2${widget.type}-$field', "");
                 }
                 setState(() {});
               },
@@ -153,7 +153,7 @@ class _Page2State extends State<Page2> {
                               'mm ${field.split(' ').sublist(field.split(' ').length - 2).join(' ')}',
                           controller: controllers[field],
                           onChanged: (value) {
-                            state.updateField('2-$field', value);
+                            state.updateField('2${widget.type}-$field', value);
                           },
                         )),
                     const SizedBox(height: 20),

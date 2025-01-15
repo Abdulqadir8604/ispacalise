@@ -47,7 +47,7 @@ class _Page2State extends State<Page2> {
     for (var field in fields) {
       controllers[field] = TextEditingController(
           text: Provider.of<MoyersState>(context, listen: false)
-              .getField('2-$field'));
+              .getField('2${widget.type}-$field'));
     }
   }
 
@@ -107,7 +107,7 @@ class _Page2State extends State<Page2> {
               onPressed: () {
                 for (var field in fields) {
                   controllers[field]?.clear();
-                  state.updateField('2-$field', "");
+                  state.updateField('2${widget.type}-$field', "");
                 }
                 setState(() {});
               },
@@ -147,7 +147,7 @@ class _Page2State extends State<Page2> {
                               'mm ${field.split(' ').sublist(field.split(' ').length - 2).join(' ')}',
                           controller: controllers[field],
                           onChanged: (value) {
-                            state.updateField('2-$field', value);
+                            state.updateField('2${widget.type}-$field', value);
                           },
                         )),
                     const SizedBox(height: 20),

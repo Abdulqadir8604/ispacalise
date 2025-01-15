@@ -47,7 +47,7 @@ class _Page1State extends State<Page1> {
     for (var field in fields) {
       controllers[field] = TextEditingController(
           text: Provider.of<MoyersState>(context, listen: false)
-              .getField('1-$field'));
+              .getField('1${widget.type}-$field'));
     }
   }
 
@@ -89,7 +89,7 @@ class _Page1State extends State<Page1> {
               onPressed: () {
                 for (var field in fields) {
                   controllers[field]?.clear();
-                  state.updateField('1-$field', "");
+                  state.updateField('1${widget.type}-$field', "");
                 }
                 setState(() {});
               },
@@ -146,7 +146,7 @@ class _Page1State extends State<Page1> {
                           hint: 'mm',
                           controller: controllers[field],
                           onChanged: (value) {
-                            state.updateField('1-$field', value);
+                            state.updateField('1${widget.type}-$field', value);
                             setState(() {}); // Update the sum dynamically
                           },
                         )),

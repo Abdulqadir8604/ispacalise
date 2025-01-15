@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../moyers_analysis/quadrants/pages/summary1.dart';
 import 'pages/page1.dart';
 import 'pages/page2.dart';
 import 'pages/page3.dart';
 import 'pages/page4.dart';
 import 'pages/page5.dart';
+import 'pages/summary1.dart';
 import 'pages/summary2.dart';
 
 class RadiographicMixedDentitionQuads extends StatefulWidget {

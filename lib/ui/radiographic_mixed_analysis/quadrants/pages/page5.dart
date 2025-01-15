@@ -45,7 +45,7 @@ class _Page5State extends State<Page5> {
 
     final state = Provider.of<Radiographicstate>(context, listen: false);
     for (var field in fields) {
-      controllers[field] = TextEditingController(text: state.getField('5-$field'));
+      controllers[field] = TextEditingController(text: state.getField('5${widget.type}-$field'));
     }
   }
 
@@ -105,7 +105,7 @@ class _Page5State extends State<Page5> {
               onPressed: () {
                 for (var field in fields) {
                   controllers[field]?.clear();
-                  state.updateField('5-$field', "");
+                  state.updateField('5${widget.type}-$field', "");
                 }
                 setState(() {});
               },
@@ -144,7 +144,7 @@ class _Page5State extends State<Page5> {
                           hint: 'mm',
                           controller: controllers[field],
                           onChanged: (value) {
-                            state.updateField('5-$field', value);
+                            state.updateField('5${widget.type}-$field', value);
                             setState(
                                 () {});
                           },

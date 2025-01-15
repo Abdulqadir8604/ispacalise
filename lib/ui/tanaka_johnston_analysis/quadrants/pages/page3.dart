@@ -45,7 +45,7 @@ class _Page3State extends State<Page3> {
 
     final state = Provider.of<TanakaJohnstonState>(context, listen: false);
     for (var field in fields) {
-      controllers[field] = TextEditingController(text: state.getField('3-$field'));
+      controllers[field] = TextEditingController(text: state.getField('3${widget.type}-$field'));
     }
   }
 
@@ -105,7 +105,7 @@ class _Page3State extends State<Page3> {
               onPressed: () {
                 for (var field in fields) {
                   controllers[field]?.clear();
-                  state.updateField('3-$field', "");
+                  state.updateField('3${widget.type}-$field', "");
                 }
                 setState(() {});
               },
@@ -144,7 +144,7 @@ class _Page3State extends State<Page3> {
                           hint: 'mm',
                           controller: controllers[field],
                           onChanged: (value) {
-                            state.updateField('3-$field', value);
+                            state.updateField('3${widget.type}-$field', value);
                             setState(
                                 () {});
                           },
