@@ -29,13 +29,13 @@ class _RadiographicMixedDentitionAnalysisPageState
           ),
         ),
         actions: [
-          IconButton(
+          TextButton(
             onPressed: () {
               final state = Provider.of<RadiographicState>(context, listen: false);
               state.reset();
               setState(() {});
             },
-            icon: const Icon(Icons.refresh),
+            child: const Text('Reset'),
           ),
         ],
       ),

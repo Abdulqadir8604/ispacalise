@@ -22,20 +22,20 @@ class _TanakaJohnstonAnalysisPageState
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
         title: Text(
-          'Tanaka Johnston Analysis',
+          'T & J Analysis',
           style: TextStyle(
             color: Theme.of(context).colorScheme.onSurface,
             fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
           ),
         ),
         actions: [
-          IconButton(
+          TextButton(
             onPressed: () {
               final state = Provider.of<TanakaJohnstonState>(context, listen: false);
               state.reset();
               setState(() {});
             },
-            icon: const Icon(Icons.refresh),
+            child: const Text('Reset'),
           ),
         ],
       ),

@@ -28,13 +28,13 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
           ),
         ),
         actions: [
-          IconButton(
+          TextButton(
             onPressed: () {
               final state = Provider.of<HuckabaState>(context, listen: false);
               state.reset();
               setState(() {});
             },
-            icon: const Icon(Icons.refresh),
+            child: const Text('Reset'),
           ),
         ],
       ),
