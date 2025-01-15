@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:ispacalise/provider/RadiographicState.dart';
 import 'package:provider/provider.dart';
+import '../../../../provider/TanakaJohnstonState.dart';
 import '../../../../util/mtextfield.dart';
 
 class Page3 extends StatefulWidget {
   final String type;
-  final Map radioData;
+  final Map tanakaData;
   final PageController pageController;
 
   const Page3({
     super.key,
     required this.type,
     required this.pageController,
-    required this.radioData,
+    required this.tanakaData,
   });
 
   @override
@@ -28,26 +28,24 @@ class _Page3State extends State<Page3> {
   void initState() {
     super.initState();
     final List<String> fieldLabel = [
-      "Mesiodistal width of \$3-1",
-      "Mesiodistal width of \$3-2",
-      "Mesiodistal width of \$3-3",
-      "Mesiodistal width of \$3-4",
-      "Mesiodistal width of \$3-5",
-      "Mesiodistal width of \$3-6",
+      "Distal aspect of \$3-1-1 to mesial aspect of \$3-1-2",
+      "Mesial aspect of \$3-2 to midline",
+      "Midline to mesial of \$3-3",
+      "Mesial aspect of \$3-4-1 to distal aspect of \$3-4-2",
     ];
-    final radData = widget.radioData;
+    final tanaData = widget.tanakaData;
 
-    // Replace placeholders in fieldLabel with values from radData
+    // Replace placeholders in fieldLabel with values from tanaData
     fields = fieldLabel.map((label) {
-      radData.forEach((key, value) {
+      tanaData.forEach((key, value) {
         label = label.replaceAll('\$$key', value.toString());
       });
       return label;
     }).toList();
 
-    final state = Provider.of<Radiographicstate>(context, listen: false);
+    final state = Provider.of<TanakaJohnstonState>(context, listen: false);
     for (var field in fields) {
-      controllers[field] = TextEditingController(text: state.getField(field));
+      controllers[field] = TextEditingController(text: state.getField('3-$field'));
     }
   }
 
@@ -59,7 +57,7 @@ class _Page3State extends State<Page3> {
     super.dispose();
   }
 
-  double calculateSum(BuildContext context) {
+  double calculateSpace() {
     double total = 0.0;
     for (var field in fields) {
       total += double.tryParse(controllers[field]?.text ?? "") ?? 0.0;
@@ -69,8 +67,8 @@ class _Page3State extends State<Page3> {
 
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<Radiographicstate>(context);
-    final sum = calculateSum(context);
+    final state = Provider.of<TanakaJohnstonState>(context);
+    final spaceAvailable = calculateSpace();
 
     return PopScope(
       onPopInvoked: (_) {
@@ -87,7 +85,7 @@ class _Page3State extends State<Page3> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Radiographic Analysis",
+                "T & J Analysis",
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface,
                   fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
@@ -107,7 +105,7 @@ class _Page3State extends State<Page3> {
               onPressed: () {
                 for (var field in fields) {
                   controllers[field]?.clear();
-                  state.updateField(field, "");
+                  state.updateField('3-$field', "");
                 }
                 setState(() {});
               },
@@ -132,7 +130,7 @@ class _Page3State extends State<Page3> {
                       width: double.infinity,
                       padding: const EdgeInsets.all(16),
                       child: Text(
-                        "Measure the following on the OPG:",
+                        "Measure the following on the study model:",
                         style: TextStyle(
                           fontSize:
                               Theme.of(context).textTheme.bodyLarge?.fontSize,
@@ -146,16 +144,16 @@ class _Page3State extends State<Page3> {
                           hint: 'mm',
                           controller: controllers[field],
                           onChanged: (value) {
-                            state.updateField(field, value);
+                            state.updateField('3-$field', value);
                             setState(
-                                () {}); // Update space available dynamically
+                                () {});
                           },
                         )),
                     const SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "Sum of Above: ${sum.toStringAsFixed(2)}",
+                        "Space Available: $spaceAvailable mm",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -199,33 +197,35 @@ class _Page3State extends State<Page3> {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: sum > 0
+                    onPressed: spaceAvailable > 0
                         ? () {
-                      FocusScope.of(context).unfocus();
-                      state.updateField(
-                          "Y'", sum.toString());
-                      widget.pageController.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                      );
-                    }
+                            FocusScope.of(context).unfocus();
+                            state.updateField(
+                              "Space Available",
+                              spaceAvailable.toString(),
+                            );
+                            widget.pageController.nextPage(
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeInOut,
+                            );
+                          }
                         : null,
                     style: ButtonStyle(
                       fixedSize: WidgetStateProperty.resolveWith(
-                            (states) => const Size(150, 60),
+                        (states) => const Size(150, 60),
                       ),
                       shape: WidgetStateProperty.resolveWith(
-                            (states) => RoundedRectangleBorder(
+                        (states) => RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
                       backgroundColor: WidgetStateProperty.resolveWith(
-                            (states) => sum > 0
+                        (states) => spaceAvailable > 0
                             ? Theme.of(context).colorScheme.primary
                             : Theme.of(context)
-                            .colorScheme
-                            .primary
-                            .withOpacity(0.5),
+                                .colorScheme
+                                .primary
+                                .withOpacity(0.5),
                       ),
                     ),
                     child: Icon(

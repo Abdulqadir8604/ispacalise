@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ispacalise/ui/radiographic_mixed_dentition/quadrants/pages/summary1.dart';
 
+import '../../moyers_analysis/quadrants/pages/summary1.dart';
 import 'pages/page1.dart';
 import 'pages/page2.dart';
 import 'pages/page3.dart';

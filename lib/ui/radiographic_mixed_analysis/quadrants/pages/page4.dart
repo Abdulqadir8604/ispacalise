@@ -3,12 +3,12 @@ import 'package:ispacalise/provider/RadiographicState.dart';
 import 'package:provider/provider.dart';
 import '../../../../util/mtextfield.dart';
 
-class Page5 extends StatefulWidget {
+class Page4 extends StatefulWidget {
   final String type;
   final Map radioData;
   final PageController pageController;
 
-  const Page5({
+  const Page4({
     super.key,
     required this.type,
     required this.pageController,
@@ -16,10 +16,10 @@ class Page5 extends StatefulWidget {
   });
 
   @override
-  State<Page5> createState() => _Page5State();
+  State<Page4> createState() => _Page4State();
 }
 
-class _Page5State extends State<Page5> {
+class _Page4State extends State<Page4> {
   final Map<String, TextEditingController> controllers = {};
 
   late List<String> fields = [];
@@ -28,10 +28,12 @@ class _Page5State extends State<Page5> {
   void initState() {
     super.initState();
     final List<String> fieldLabel = [
-      "Distal aspect of \$5-1-1 to Mesial aspect of \$5-1-2",
-      "Mesial aspect of \$5-2 to midline",
-      "C Midline to mesial aspect of \$5-3",
-      "D Mesial aspect of \$5-4-1 to Distal aspect of \$5-4-2",
+      "Mesiodistal width of \$4-1",
+      "Mesiodistal width of \$4-2",
+      "Mesiodistal width of \$4-3",
+      "Mesiodistal width of \$4-4",
+      "Mesiodistal width of \$4-5",
+      "Mesiodistal width of \$4-6",
     ];
     final radData = widget.radioData;
 
@@ -45,7 +47,7 @@ class _Page5State extends State<Page5> {
 
     final state = Provider.of<Radiographicstate>(context, listen: false);
     for (var field in fields) {
-      controllers[field] = TextEditingController(text: state.getField(field));
+      controllers[field] = TextEditingController(text: state.getField('4-$field'));
     }
   }
 
@@ -93,7 +95,7 @@ class _Page5State extends State<Page5> {
               ),
               const SizedBox(height: 4),
               Text(
-                "${widget.type} - (5)",
+                "${widget.type} - (4)",
                 style: TextStyle(
                   fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
                 ),
@@ -105,7 +107,7 @@ class _Page5State extends State<Page5> {
               onPressed: () {
                 for (var field in fields) {
                   controllers[field]?.clear();
-                  state.updateField(field, "");
+                  state.updateField('4-$field', "");
                 }
                 setState(() {});
               },
@@ -130,7 +132,7 @@ class _Page5State extends State<Page5> {
                       width: double.infinity,
                       padding: const EdgeInsets.all(16),
                       child: Text(
-                        "Measure the following on the study model:",
+                        "Measure the following on the OPG:",
                         style: TextStyle(
                           fontSize:
                               Theme.of(context).textTheme.bodyLarge?.fontSize,
@@ -144,16 +146,16 @@ class _Page5State extends State<Page5> {
                           hint: 'mm',
                           controller: controllers[field],
                           onChanged: (value) {
-                            state.updateField(field, value);
+                            state.updateField('4-$field', value);
                             setState(
-                                () {}); // Update space available dynamically
+                                () {});
                           },
                         )),
                     const SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "Space available: ${sum.toStringAsFixed(2)}",
+                        "Sum of Above: ${sum.toStringAsFixed(2)}",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -201,7 +203,7 @@ class _Page5State extends State<Page5> {
                         ? () {
                       FocusScope.of(context).unfocus();
                       state.updateField(
-                          "Space available", sum.toString());
+                          "X'", sum.toString());
                       widget.pageController.nextPage(
                         duration: const Duration(milliseconds: 300),
                         curve: Curves.easeInOut,

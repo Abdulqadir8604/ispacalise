@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:ispacalise/ui/tanaka_johnston/index.dart';
-
-import '../ui/huckaba/index.dart';
-import '../ui/huckaba/quadrants/quadrants.dart';
-import '../ui/radiographic_mixed_dentition/index.dart';
-import '../ui/radiographic_mixed_dentition/quadrants/quadrants.dart';
-import '../ui/tanaka_johnston/quadrants/quadrants.dart';
+import 'package:ispacalise/ui/radiographic_mixed_analysis/quadrants/quadrants.dart';
+import '../ui/huckaba_analysis/index.dart';
+import '../ui/huckaba_analysis/quadrants/quadrants.dart';
+import '../ui/moyers_analysis/index.dart';
+import '../ui/moyers_analysis/quadrants/quadrants.dart';
+import '../ui/radiographic_mixed_analysis/index.dart';
+import '../ui/tanaka_johnston_analysis/index.dart';
+import '../ui/tanaka_johnston_analysis/quadrants/quadrants.dart';
 
 
 /// slide transition for the hucaba page
@@ -112,6 +113,45 @@ PageRouteBuilder radiographicMixedDentitionPageRouteBuilder(BuildContext context
 PageRouteBuilder radiographicMixedDentitionAnalPageRouteBuilder(BuildContext context, type, radiographicData) {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => RadiographicMixedDentitionQuads(type: type, radiographyData: radiographicData),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(1.0, 0.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+      var offsetAnimation = animation.drive(tween);
+
+      return SlideTransition(
+        position: offsetAnimation,
+        child: child,
+      );
+    },
+  );
+}
+
+/// slide transition for the radiographic mixed dentition page
+PageRouteBuilder moyersAnalysisPageRouteBuilder(BuildContext context) {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const MoyersAnalysisPage(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(1.0, 0.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+      var offsetAnimation = animation.drive(tween);
+
+      return SlideTransition(
+        position: offsetAnimation,
+        child: child,
+      );
+    },
+  );
+}
+
+PageRouteBuilder moyersAnalysisAnalPageRouteBuilder(BuildContext context, type, radiographicData) {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => MoyersQuads(type: type, radiographyData: radiographicData),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(1.0, 0.0);
       const end = Offset.zero;

@@ -1,59 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:ispacalise/provider/RadiographicState.dart';
 import 'package:provider/provider.dart';
-
-import '../../../../provider/TanakaJohnstonState.dart';
 import '../../../../util/mtextfield.dart';
 
-class Page1 extends StatefulWidget {
+class Page3 extends StatefulWidget {
   final String type;
-  final Map tanakaData;
+  final Map radioData;
   final PageController pageController;
 
-  const Page1({
+  const Page3({
     super.key,
     required this.type,
     required this.pageController,
-    required this.tanakaData,
+    required this.radioData,
   });
 
   @override
-  _Page1State createState() => _Page1State();
+  _Page3State createState() => _Page3State();
 }
 
-class _Page1State extends State<Page1> {
+class _Page3State extends State<Page3> {
   final Map<String, TextEditingController> controllers = {};
-  late List fields = [];
+
+  late List<String> fields = [];
 
   @override
   void initState() {
     super.initState();
-    // Initialize controllers
-    final List<String> fieldLabels = [
-      "Mesiodistal width of \$1-1",
-      "Mesiodistal width of \$1-2",
-      "Mesiodistal width of \$1-3",
-      "Mesiodistal width of \$1-4",
+    final List<String> fieldLabel = [
+      "Mesiodistal width of \$3-1",
+      "Mesiodistal width of \$3-2",
+      "Mesiodistal width of \$3-3",
+      "Mesiodistal width of \$3-4",
+      "Mesiodistal width of \$3-5",
+      "Mesiodistal width of \$3-6",
     ];
-    final tanaData = widget.tanakaData;
+    final radData = widget.radioData;
 
-    // Replace placeholders in fieldLabels with values from tanaData
-    fields = fieldLabels.map((label) {
-      tanaData.forEach((key, value) {
+    // Replace placeholders in fieldLabel with values from radData
+    fields = fieldLabel.map((label) {
+      radData.forEach((key, value) {
         label = label.replaceAll('\$$key', value.toString());
       });
       return label;
     }).toList();
 
+    final state = Provider.of<Radiographicstate>(context, listen: false);
     for (var field in fields) {
-      controllers[field] = TextEditingController(
-          text: Provider.of<TanakaJohnstonState>(context, listen: false)
-              .getField(field));
+      controllers[field] = TextEditingController(text: state.getField('3-$field'));
     }
   }
 
   @override
   void dispose() {
-    // Dispose controllers
     for (var controller in controllers.values) {
       controller.dispose();
     }
@@ -70,7 +69,7 @@ class _Page1State extends State<Page1> {
 
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<TanakaJohnstonState>(context);
+    final state = Provider.of<Radiographicstate>(context);
     final sum = calculateSum(context);
 
     return PopScope(
@@ -84,23 +83,11 @@ class _Page1State extends State<Page1> {
         appBar: AppBar(
           toolbarHeight: 70,
           backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-          actions: [
-            IconButton(
-              onPressed: () {
-                for (var field in fields) {
-                  controllers[field]?.clear();
-                  state.updateField(field, "");
-                }
-                setState(() {});
-              },
-              icon: const Icon(Icons.refresh),
-            ),
-          ],
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "T & J Analysis",
+                "Radiographic Analysis",
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface,
                   fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
@@ -108,13 +95,26 @@ class _Page1State extends State<Page1> {
               ),
               const SizedBox(height: 4),
               Text(
-                "${widget.type} - (1)",
+                "${widget.type} - (3)",
                 style: TextStyle(
                   fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
                 ),
               ),
             ],
           ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                for (var field in fields) {
+                  controllers[field]?.clear();
+                  state.updateField('3-$field', "");
+                }
+                setState(() {});
+              },
+              icon: const Icon(Icons.refresh),
+            ),
+          ],
+          automaticallyImplyLeading: false,
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -132,7 +132,7 @@ class _Page1State extends State<Page1> {
                       width: double.infinity,
                       padding: const EdgeInsets.all(16),
                       child: Text(
-                        "Measure the following on the study model:",
+                        "Measure the following on the OPG:",
                         style: TextStyle(
                           fontSize:
                               Theme.of(context).textTheme.bodyLarge?.fontSize,
@@ -146,8 +146,9 @@ class _Page1State extends State<Page1> {
                           hint: 'mm',
                           controller: controllers[field],
                           onChanged: (value) {
-                            state.updateField(field, value);
-                            setState(() {}); // Update the sum dynamically
+                            state.updateField('3-$field', value);
+                            setState(
+                                () {});
                           },
                         )),
                     const SizedBox(height: 20),
@@ -162,6 +163,7 @@ class _Page1State extends State<Page1> {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 30),
                   ],
                 ),
               ),
@@ -169,20 +171,16 @@ class _Page1State extends State<Page1> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
-                    onPressed: sum > 0
-                        ? () {
-                            FocusScope.of(context).unfocus();
-                            state.updateField(
-                                "Sum of incisors", sum.toString());
-                            widget.pageController.nextPage(
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.easeInOut,
-                            );
-                          }
-                        : null,
+                    onPressed: () {
+                      FocusScope.of(context).unfocus();
+                      widget.pageController.previousPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    },
                     style: ButtonStyle(
                       fixedSize: WidgetStateProperty.resolveWith(
                         (states) => const Size(150, 60),
@@ -193,12 +191,41 @@ class _Page1State extends State<Page1> {
                         ),
                       ),
                       backgroundColor: WidgetStateProperty.resolveWith(
-                        (states) => sum > 0
+                          (states) => Theme.of(context).colorScheme.secondary),
+                    ),
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: sum > 0
+                        ? () {
+                      FocusScope.of(context).unfocus();
+                      state.updateField(
+                          "Y'", sum.toString());
+                      widget.pageController.nextPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    }
+                        : null,
+                    style: ButtonStyle(
+                      fixedSize: WidgetStateProperty.resolveWith(
+                            (states) => const Size(150, 60),
+                      ),
+                      shape: WidgetStateProperty.resolveWith(
+                            (states) => RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
+                      backgroundColor: WidgetStateProperty.resolveWith(
+                            (states) => sum > 0
                             ? Theme.of(context).colorScheme.primary
                             : Theme.of(context)
-                                .colorScheme
-                                .primary
-                                .withOpacity(0.5),
+                            .colorScheme
+                            .primary
+                            .withOpacity(0.5),
                       ),
                     ),
                     child: Icon(

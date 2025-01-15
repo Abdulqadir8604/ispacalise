@@ -1,44 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:ispacalise/provider/MoyersState.dart';
 import 'package:provider/provider.dart';
-
-import '../../../../provider/RadiographicState.dart';
 import '../../../../util/mtextfield.dart';
 
-class Page1 extends StatefulWidget {
+class Page2 extends StatefulWidget {
   final String type;
-  final Map radioData;
+  final Map moyerData;
   final PageController pageController;
 
-  const Page1({
+  const Page2({
     super.key,
     required this.type,
     required this.pageController,
-    required this.radioData,
+    required this.moyerData,
   });
 
   @override
-  State<Page1> createState() => _Page1State();
+  State<Page2> createState() => _Page2State();
 }
 
-class _Page1State extends State<Page1> {
+class _Page2State extends State<Page2> {
   final Map<String, TextEditingController> controllers = {};
+
   late List fields = [];
 
   @override
   void initState() {
     super.initState();
-    // Initialize controllers
-    final List<String> fieldLabels = [
-      "Mesiodistal width of \$1-1",
-      "Mesiodistal width of \$1-2",
-      "Mesiodistal width of \$1-3",
-      "Mesiodistal width of \$1-4",
-    ];
-    final radData = widget.radioData;
 
-    // Replace placeholders in fieldLabels with values from radData
+    final List<String> fieldLabels = [
+      "Distal aspect of \$2-1-1 to Mesial aspect of \$2-1-2",
+      "Mesial aspect of \$2-2 to Midline",
+      "Midline to Mesial of \$2-3",
+      "Mesial aspect of \$2-4-1 to Distal aspect of \$2-4-1",
+    ];
+    final moyData = widget.moyerData;
+
+    // Replace placeholders in fieldLabels with values from moyData
     fields = fieldLabels.map((label) {
-      radData.forEach((key, value) {
+      moyData.forEach((key, value) {
         label = label.replaceAll('\$$key', value.toString());
       });
       return label;
@@ -46,14 +46,13 @@ class _Page1State extends State<Page1> {
 
     for (var field in fields) {
       controllers[field] = TextEditingController(
-          text: Provider.of<Radiographicstate>(context, listen: false)
-              .getField(field));
+          text: Provider.of<MoyersState>(context, listen: false)
+              .getField('2-$field'));
     }
   }
 
   @override
   void dispose() {
-    // Dispose controllers
     for (var controller in controllers.values) {
       controller.dispose();
     }
@@ -70,7 +69,7 @@ class _Page1State extends State<Page1> {
 
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<Radiographicstate>(context);
+    final state = Provider.of<MoyersState>(context);
     final sum = calculateSum(context);
 
     return PopScope(
@@ -84,23 +83,11 @@ class _Page1State extends State<Page1> {
         appBar: AppBar(
           toolbarHeight: 70,
           backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-          actions: [
-            IconButton(
-              onPressed: () {
-                for (var field in fields) {
-                  controllers[field]?.clear();
-                  state.updateField(field, "");
-                }
-                setState(() {});
-              },
-              icon: const Icon(Icons.refresh),
-            ),
-          ],
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Radiographic Analysis",
+                "Moyer's Analysis",
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface,
                   fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
@@ -108,13 +95,26 @@ class _Page1State extends State<Page1> {
               ),
               const SizedBox(height: 4),
               Text(
-                "${widget.type} - (1)",
+                "${widget.type} - (2)",
                 style: TextStyle(
                   fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
                 ),
               ),
             ],
           ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                for (var field in fields) {
+                  controllers[field]?.clear();
+                  state.updateField('2-$field', "");
+                }
+                setState(() {});
+              },
+              icon: const Icon(Icons.refresh),
+            ),
+          ],
+          automaticallyImplyLeading: false,
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -143,18 +143,18 @@ class _Page1State extends State<Page1> {
                     const SizedBox(height: 20),
                     ...fields.map((field) => MTextField(
                           label: field,
-                          hint: 'mm',
+                          hint:
+                              'mm ${field.split(' ').sublist(field.split(' ').length - 2).join(' ')}',
                           controller: controllers[field],
                           onChanged: (value) {
-                            state.updateField(field, value);
-                            setState(() {}); // Update the sum dynamically
+                            state.updateField('2-$field', value);
                           },
                         )),
                     const SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "Sum of Above: ${sum.toStringAsFixed(2)}",
+                        "Space available: ${sum.toStringAsFixed(2)}",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -169,20 +169,16 @@ class _Page1State extends State<Page1> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
-                    onPressed: sum > 0
-                        ? () {
-                            FocusScope.of(context).unfocus();
-                            state.updateField(
-                                "Sum of incisors", sum.toString());
-                            widget.pageController.nextPage(
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.easeInOut,
-                            );
-                          }
-                        : null,
+                    onPressed: () {
+                      FocusScope.of(context).unfocus();
+                      widget.pageController.previousPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    },
                     style: ButtonStyle(
                       fixedSize: WidgetStateProperty.resolveWith(
                         (states) => const Size(150, 60),
@@ -193,12 +189,41 @@ class _Page1State extends State<Page1> {
                         ),
                       ),
                       backgroundColor: WidgetStateProperty.resolveWith(
-                        (states) => sum > 0
+                          (states) => Theme.of(context).colorScheme.secondary),
+                    ),
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: sum > 0
+                        ? () {
+                      FocusScope.of(context).unfocus();
+                      state.updateField(
+                          "Space available", sum.toString());
+                      widget.pageController.nextPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    }
+                        : null,
+                    style: ButtonStyle(
+                      fixedSize: WidgetStateProperty.resolveWith(
+                            (states) => const Size(150, 60),
+                      ),
+                      shape: WidgetStateProperty.resolveWith(
+                            (states) => RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
+                      backgroundColor: WidgetStateProperty.resolveWith(
+                            (states) => sum > 0
                             ? Theme.of(context).colorScheme.primary
                             : Theme.of(context)
-                                .colorScheme
-                                .primary
-                                .withOpacity(0.5),
+                            .colorScheme
+                            .primary
+                            .withOpacity(0.5),
                       ),
                     ),
                     child: Icon(

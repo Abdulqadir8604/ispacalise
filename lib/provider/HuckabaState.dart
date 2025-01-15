@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 
-import '../ui/huckaba/service/huckaba_analysis.dart';
+import '../ui/huckaba_analysis/service/huckaba_analysis.dart';
+
 
 class HuckabaState extends ChangeNotifier {
   double _x1 = 0.0;

@@ -32,6 +32,18 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
+                  moyersAnalysisPageRouteBuilder(context),
+                );
+              },
+              text: 'Moyer\'s Analysis',
+            ),
+            const SizedBox(height: 20),
+            MButton(
+              height: 100,
+              width: 250,
+              onPressed: () {
+                Navigator.push(
+                  context,
                   radiographicMixedDentitionPageRouteBuilder(context),
                 );
               },
