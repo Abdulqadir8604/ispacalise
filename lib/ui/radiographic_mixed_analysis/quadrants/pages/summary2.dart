@@ -20,7 +20,7 @@ class _Summary2PageState extends State<Summary2Page> {
   @override
   void initState() {
     super.initState();
-    final state = Provider.of<Radiographicstate>(context, listen: false);
+    final state = Provider.of<RadiographicState>(context, listen: false);
     final spaceRequired =
         double.tryParse(state.getField("Space required for unerupted canine and premolar")) ?? 0.0;
     final spaceAvailable =
@@ -44,7 +44,7 @@ class _Summary2PageState extends State<Summary2Page> {
 
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<Radiographicstate>(context);
+    final state = Provider.of<RadiographicState>(context);
 
     return PopScope(
       onPopInvoked: (_) {

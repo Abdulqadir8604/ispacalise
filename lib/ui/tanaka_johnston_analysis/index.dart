@@ -28,6 +28,16 @@ class _TanakaJohnstonAnalysisPageState
             fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              final state = Provider.of<TanakaJohnstonState>(context, listen: false);
+              state.reset();
+              setState(() {});
+            },
+            icon: const Icon(Icons.refresh),
+          ),
+        ],
       ),
       body: SizedBox(
         width: double.infinity,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ispacalise/provider/HuckabaState.dart';
 import 'package:ispacalise/util/slide_transition.dart';
+import 'package:provider/provider.dart';
 
 import '../../util/mbutton.dart';
 import 'quadrants/quadrants.dart';
@@ -25,6 +27,16 @@ class _HuckabaAnalysisPageState extends State<HuckabaAnalysisPage> {
             fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              final state = Provider.of<HuckabaState>(context, listen: false);
+              state.reset();
+              setState(() {});
+            },
+            icon: const Icon(Icons.refresh),
+          ),
+        ],
       ),
       body: SizedBox(
         width: double.infinity,

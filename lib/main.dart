@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => MoyersState()),
-        ChangeNotifierProvider(create: (_) => Radiographicstate()),
+        ChangeNotifierProvider(create: (_) => RadiographicState()),
         ChangeNotifierProvider(create: (_) => TanakaJohnstonState()),
         ChangeNotifierProvider(create: (_) => HuckabaState()),
       ],

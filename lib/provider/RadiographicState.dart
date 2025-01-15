@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
-class Radiographicstate extends ChangeNotifier {
+class RadiographicState extends ChangeNotifier {
   final Map<String, String> formData = {};
   final Map<String, dynamic> mandibularReport = {};
   final Map<String, dynamic> maxillaryReport = {};

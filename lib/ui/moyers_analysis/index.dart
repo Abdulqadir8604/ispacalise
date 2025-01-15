@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ispacalise/util/slide_transition.dart';
+import 'package:provider/provider.dart';
 
+import '../../provider/MoyersState.dart';
 import '../../util/mbutton.dart';
 
 class MoyersAnalysisPage extends StatefulWidget {
@@ -26,6 +28,16 @@ class _MoyersAnalysisPageState
             fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
           ),
         ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              final state = Provider.of<MoyersState>(context, listen: false);
+              state.reset();
+              setState(() {});
+            },
+            child: const Text('Reset'),
+          ),
+        ],
       ),
       body: SizedBox(
         width: double.infinity,

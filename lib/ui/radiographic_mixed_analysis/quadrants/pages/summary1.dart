@@ -20,7 +20,7 @@ class _Summary1PageState extends State<Summary1Page> {
   @override
   void initState() {
     super.initState();
-    final state = Provider.of<Radiographicstate>(context, listen: false);
+    final state = Provider.of<RadiographicState>(context, listen: false);
     final X = double.parse(state.getField("X"));
     final X_ = double.parse(state.getField("X'"));
     final Y_ = double.parse(state.getField("Y'"));
@@ -37,7 +37,7 @@ class _Summary1PageState extends State<Summary1Page> {
 
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<Radiographicstate>(context);
+    final state = Provider.of<RadiographicState>(context);
 
     return PopScope(
       onPopInvoked: (_) {

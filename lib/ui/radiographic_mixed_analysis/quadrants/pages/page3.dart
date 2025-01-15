@@ -45,7 +45,7 @@ class _Page3State extends State<Page3> {
       return label;
     }).toList();
 
-    final state = Provider.of<Radiographicstate>(context, listen: false);
+    final state = Provider.of<RadiographicState>(context, listen: false);
     for (var field in fields) {
       controllers[field] = TextEditingController(text: state.getField('3${widget.type}-$field'));
     }
@@ -69,7 +69,7 @@ class _Page3State extends State<Page3> {
 
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<Radiographicstate>(context);
+    final state = Provider.of<RadiographicState>(context);
     final sum = calculateSum(context);
 
     return PopScope(

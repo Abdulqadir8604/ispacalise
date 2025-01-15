@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ispacalise/provider/RadiographicState.dart';
 import 'package:ispacalise/util/slide_transition.dart';
+import 'package:provider/provider.dart';
 
 import '../../util/mbutton.dart';
 
@@ -26,6 +28,16 @@ class _RadiographicMixedDentitionAnalysisPageState
             fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              final state = Provider.of<RadiographicState>(context, listen: false);
+              state.reset();
+              setState(() {});
+            },
+            icon: const Icon(Icons.refresh),
+          ),
+        ],
       ),
       body: SizedBox(
         width: double.infinity,
