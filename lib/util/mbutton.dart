@@ -5,6 +5,7 @@ class MButton extends StatelessWidget {
   final String text;
   final double? width;
   final double? height;
+  final Color? backgroundColor;
   final Color? color;
 
   const MButton({
@@ -13,7 +14,7 @@ class MButton extends StatelessWidget {
     required this.text,
     this.width,
     this.height,
-    this.color,
+    this.backgroundColor, this.color,
   });
 
   @override
@@ -26,7 +27,7 @@ class MButton extends StatelessWidget {
             color: Colors.transparent,
           ),
         ),
-        elevation: WidgetStateProperty.all<double>(10),
+        elevation: WidgetStateProperty.all<double>(5),
         fixedSize: WidgetStateProperty.all<Size>(Size(width ?? 100, height ?? 50)),
         shape: WidgetStateProperty.all<OutlinedBorder>(
           RoundedRectangleBorder(
@@ -34,7 +35,7 @@ class MButton extends StatelessWidget {
           ),
         ),
         backgroundColor: WidgetStateProperty.all<Color>(
-            color ?? Theme.of(context).colorScheme.primary),
+            backgroundColor ?? Theme.of(context).colorScheme.primaryContainer),
         shadowColor: WidgetStateProperty.all<Color>(Colors.black.withOpacity(0.5)),
       ),
       onPressed: onPressed,
@@ -42,7 +43,7 @@ class MButton extends StatelessWidget {
         text,
         style: TextStyle(
           fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
-          color: Theme.of(context).colorScheme.onPrimary,
+          color: color ?? Theme.of(context).colorScheme.onPrimaryContainer,
         ),
         textAlign: TextAlign.center,
       ),

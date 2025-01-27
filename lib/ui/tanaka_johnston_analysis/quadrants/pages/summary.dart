@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../provider/TanakaJohnstonState.dart';
+import '../../../../util/mAppBar.dart';
 
 class SummaryPage extends StatefulWidget {
   final String type;
@@ -54,29 +55,9 @@ class _SummaryPageState extends State<SummaryPage> {
         );
       },
       child: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 70,
-          automaticallyImplyLeading: false,
-          backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "T & J Analysis",
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface,
-                  fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                widget.type,
-                style: TextStyle(
-                  fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
-                ),
-              ),
-            ],
-          ),
+        appBar:  mAppBar(
+          title: "T & J Analysis",
+          subtitle: widget.type,
         ),
         floatingActionButton: Padding(
           padding: const EdgeInsets.all(2.2),
@@ -96,6 +77,7 @@ class _SummaryPageState extends State<SummaryPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(height: 20),
                     Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.rectangle,

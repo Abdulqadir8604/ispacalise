@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ispacalise/util/mAppBar.dart';
+import 'package:ispacalise/util/mTextDiv.dart';
 import '../../../util/mtextfield.dart';
 import '../../../util/mbutton.dart';
 import '../service/huckaba_analysis.dart';
@@ -34,8 +36,7 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
           throw Exception("Please enter valid non-zero values for all fields.");
         }
 
-        final HuckabaService analysis =
-            HuckabaService(x1: x1, x2: x2, y2: y2);
+        final HuckabaService analysis = HuckabaService(x1: x1, x2: x2, y2: y2);
         y1 = analysis.calculateY1();
         report = Map<String, String>.from(analysis.generateReport());
       } catch (e) {
@@ -60,53 +61,20 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 70,
-        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Hucaba Analysis',
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onSurface,
-                fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              widget.hucabaData["title"] as String,
-              style: TextStyle(
-                fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          IconButton(
-            onPressed: resetFields,
-            icon: const Icon(Icons.refresh),
-          ),
-        ],
+      appBar: mAppBar(
+        title: 'Hucaba Analysis',
+        subtitle: widget.hucabaData["title"] as String,
+        onReset: resetFields,
+        onBack: () {
+          Navigator.pop(context);
+        },
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 8),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(16),
-              color: Theme.of(context).colorScheme.primary,
-              child: Text(
-                "Measure the following on the study model:",
-                style: TextStyle(
-                  fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
-                  color: Theme.of(context).colorScheme.onPrimary,
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
+            const mTextDiv(text: "Measure the following on the study model:"),
             MTextField(
               controller: x1Controller,
               label:
@@ -115,19 +83,7 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
               onChanged: (_) {},
             ),
             const SizedBox(height: 16),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(16),
-              color: Theme.of(context).colorScheme.primary,
-              child: Text(
-                "Measure the following on the IOPA:",
-                style: TextStyle(
-                  fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
-                  color: Theme.of(context).colorScheme.onPrimary,
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
+            const mTextDiv(text: "Measure the following on the study model:"),
             MTextField(
               controller: x2Controller,
               label:
@@ -148,7 +104,8 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
               child: SizedBox(
                 width: double.infinity,
                 child: MButton(
-                  color: Theme.of(context).colorScheme.tertiary,
+                  backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+                  color: Theme.of(context).colorScheme.onTertiaryContainer,
                   onPressed: calculateY1,
                   text: 'Calculate',
                   width: 200,

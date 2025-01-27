@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ispacalise/provider/MoyersState.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../util/mAppBar.dart';
+
 class Summary1Page extends StatefulWidget {
   final String type;
   final PageController pageController;
@@ -23,7 +25,8 @@ class _Summary1PageState extends State<Summary1Page> {
     final state = Provider.of<MoyersState>(context, listen: false);
 
     final sumOfIncisors = double.parse(state.getField("Sum of incisors"));
-    const moyersPrediction = 0.0; // todo Calculate moyers prediction from the chart
+    const moyersPrediction =
+        0.0; // todo Calculate moyers prediction from the chart
 
     final spaceRequired = sumOfIncisors + (moyersPrediction * 2);
 
@@ -43,29 +46,15 @@ class _Summary1PageState extends State<Summary1Page> {
         );
       },
       child: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 70,
-          automaticallyImplyLeading: false,
-          backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Moyer's Analysis",
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface,
-                  fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                widget.type,
-                style: TextStyle(
-                  fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
-                ),
-              ),
-            ],
-          ),
+        appBar: mAppBar(
+          title: 'Moyer\'s Analysis',
+          subtitle: widget.type,
+          onBack: () {
+            widget.pageController.previousPage(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+            );
+          },
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,22 +63,24 @@ class _Summary1PageState extends State<Summary1Page> {
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(16),
-                    child: Text(
-                      "Moyer’s prediction for permanent canine and premolars:",
-                      style: TextStyle(
-                        fontSize:
-                        Theme.of(context).textTheme.bodySmall?.fontSize,
-                        color: Theme.of(context).colorScheme.onPrimary,
+                  children: [
+                    const SizedBox(height: 20),
+                    Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(16),
+                      child: Text(
+                        "Moyer’s prediction for permanent canine and premolars:",
+                        style: TextStyle(
+                          fontSize:
+                              Theme.of(context).textTheme.bodySmall?.fontSize,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
                       ),
                     ),
-                  ),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.all(8),
@@ -199,9 +190,7 @@ class _Summary1PageState extends State<Summary1Page> {
                         ),
                       ),
                       backgroundColor: WidgetStateProperty.resolveWith(
-                        (states) => Theme.of(context)
-                            .colorScheme
-                            .primary,
+                        (states) => Theme.of(context).colorScheme.primary,
                       ),
                     ),
                     child: Icon(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ispacalise/util/mAppBar.dart';
 import 'package:ispacalise/util/slide_transition.dart';
 import 'package:provider/provider.dart';
 
@@ -9,80 +10,83 @@ class MoyersAnalysisPage extends StatefulWidget {
   const MoyersAnalysisPage({super.key});
 
   @override
-  State<MoyersAnalysisPage> createState() =>
-      _MoyersAnalysisPageState();
+  State<MoyersAnalysisPage> createState() => _MoyersAnalysisPageState();
 }
 
-class _MoyersAnalysisPageState
-    extends State<MoyersAnalysisPage> {
+class _MoyersAnalysisPageState extends State<MoyersAnalysisPage> {
   Widget build(BuildContext context) {
     @override
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-        title: Text(
-          'Moyer\'s Analysis',
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.onSurface,
-            fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              final state = Provider.of<MoyersState>(context, listen: false);
-              state.reset();
-              setState(() {});
-            },
-            child: const Text('Reset'),
-          ),
-        ],
+      appBar: mAppBar(
+        title: 'Moyer\'s Analysis',
+        onBack: () {
+          Navigator.pop(context);
+        },
+        onReset: () {
+          final state = Provider.of<MoyersState>(context, listen: false);
+          state.reset();
+          setState(() {});
+        },
       ),
       body: SizedBox(
         width: double.infinity,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Introduction: ",
-                    style: TextStyle(
-                        fontSize:
-                            Theme.of(context).textTheme.titleLarge?.fontSize,
-                        fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.underline)),
-                Text(
-                  "To predict the space discrepancy with respect to the eruption of permanent canines an premolars with the help of erupted mandibular incisors and the Moyer’s prediction chart.",
-                  style: TextStyle(
-                    fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
-                    fontStyle: FontStyle.italic,
+                const SizedBox(height: 20),
+                Card(
+                  elevation: 0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Introduction: ",
+                            style: TextStyle(
+                                fontSize:
+                                Theme.of(context).textTheme.titleLarge?.fontSize,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.underline)),
+                        Text(
+                          "To predict the space discrepancy with respect to the eruption of permanent canines an premolars with the help of erupted mandibular incisors and the Moyer’s prediction chart.",
+                          style: TextStyle(
+                            fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Text("Armanentarium: ",
+                            style: TextStyle(
+                                fontSize:
+                                Theme.of(context).textTheme.titleLarge?.fontSize,
+                                color: colorScheme.onSurface,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.underline)),
+                        Text(
+                          "Study model\nDivider\nScale",
+                          style: TextStyle(
+                              fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
+                              fontStyle: FontStyle.italic,
+                              color: colorScheme.onSurface),
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          "Chart pending",
+                          style: TextStyle(
+                            fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
+                            color: Colors.yellow,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(height: 20),
-                Text("Armanentarium: ",
-                    style: TextStyle(
-                        fontSize:
-                            Theme.of(context).textTheme.titleLarge?.fontSize,
-                        color: colorScheme.onSurface,
-                        fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.underline)),
-                Text(
-                  "Study model\nDivider\nScale",
-                  style: TextStyle(
-                      fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
-                      fontStyle: FontStyle.italic,
-                      color: colorScheme.onSurface),
-                ),
-                const SizedBox(height: 20),
-                Text("Chart pending",
-                    style: TextStyle(
-                      fontSize:
-                          Theme.of(context).textTheme.titleLarge?.fontSize,
-                      color: Colors.yellow,
-                      fontWeight: FontWeight.bold,
-                    )),
                 GridView.count(
                   crossAxisCount: 2,
                   shrinkWrap: true,

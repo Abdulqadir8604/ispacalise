@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ispacalise/provider/RadiographicState.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../util/mAppBar.dart';
+
 class Summary1Page extends StatefulWidget {
   final String type;
   final PageController pageController;
@@ -47,29 +49,15 @@ class _Summary1PageState extends State<Summary1Page> {
         );
       },
       child: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 70,
-          automaticallyImplyLeading: false,
-          backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Radiographic Analysis",
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface,
-                  fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                widget.type,
-                style: TextStyle(
-                  fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
-                ),
-              ),
-            ],
-          ),
+        appBar: mAppBar(
+          title: 'Radio Analysis',
+          subtitle: widget.type,
+          onBack: () {
+            widget.pageController.previousPage(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+            );
+          },
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -79,6 +67,7 @@ class _Summary1PageState extends State<Summary1Page> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(height: 20),
                     Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.rectangle,

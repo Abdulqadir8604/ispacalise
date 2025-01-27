@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:ispacalise/util/mAppBar.dart';
 import 'util/mbutton.dart';
 import 'util/slide_transition.dart';
 
@@ -10,16 +11,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-        centerTitle: true,
-        title: Text(
-          'iSpacalise',
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.onSurface,
-            fontSize: Theme.of(context).textTheme.headlineSmall?.fontSize,
-          ),
-        ),
+      appBar: const mAppBar(
+        title: 'iSpacalise',
       ),
       body: Center(
         child: Column(

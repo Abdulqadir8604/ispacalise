@@ -5,8 +5,10 @@ import 'package:ispacalise/provider/RadiographicState.dart';
 import 'package:provider/provider.dart';
 import 'package:ispacalise/home_page.dart';
 
+import 'no_access.dart';
 import 'provider/HuckabaState.dart';
 import 'provider/TanakaJohnstonState.dart';
+import 'util/service/checkAccess.dart';
 
 void main() {
   runApp(const MyApp());
@@ -57,7 +59,18 @@ class MyApp extends StatelessWidget {
           textTheme: textTheme,
         ),
         // only allow portrait mode
-        home: const HomePage(),
+        home: FutureBuilder<bool>(
+          future: checkAccess(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasData && snapshot.data == true) {
+              return const HomePage();
+            } else {
+              return const NoAccessPage();
+            }
+          },
+        ),
       ),
     );
   }
