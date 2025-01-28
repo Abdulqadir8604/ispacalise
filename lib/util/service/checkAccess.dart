@@ -7,7 +7,7 @@ Future<bool> checkAccess() async {
     final response = await http.get(Uri.parse('https://app-access-api.onrender.com/api/access?appName=ispacalise'));
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      return data['canAccess'] == true; // Assuming the API returns { "canAccess": true/false }
+      return data['canAccess'];
     } else {
       return false;
     }
