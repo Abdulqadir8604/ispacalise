@@ -109,6 +109,7 @@ class _Page2State extends State<Page2> {
                   children: [
                     const SizedBox(height: 20),
                     const mTextDiv(text: "Measure the following on the study model:"),
+                    const SizedBox(height: 20),
                     ...fields.map((field) => MTextField(
                           label: field,
                           hint:

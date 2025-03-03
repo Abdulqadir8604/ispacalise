@@ -33,12 +33,12 @@ class _Summary2PageState extends State<Summary2Page> {
         "Arc length discrepancy", arcLengthDiscrepancy.toString());
 
     String prediction;
-    if (arcLengthDiscrepancy < 0) {
-      prediction = "Crowding";
-    } else if (arcLengthDiscrepancy > 0) {
-      prediction = "Spacing";
+    if (arcLengthDiscrepancy > 0) {
+      prediction = "Inadequate space";
+    } else if (arcLengthDiscrepancy == 0) {
+      prediction = "Adequate space";
     } else {
-      prediction = "No discrepancy";
+      prediction = "Spacing could be seen";
     }
 
     state.updateField("Prediction", prediction);

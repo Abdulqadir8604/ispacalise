@@ -1,0 +1,148 @@
+{
+  "Mixed Dentition Analysis": {
+    "Moyer's Prediction Values": {
+      "Total Mandibular Incisor Width": [
+        {
+          "Width": 19.5,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 20.6,
+            "Mandible": 20.1
+          }
+        },
+        {
+          "Width": 20.0,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 20.9,
+            "Mandible": 20.4
+          }
+        },
+        {
+          "Width": 20.5,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 21.2,
+            "Mandible": 20.7
+          }
+        },
+        {
+          "Width": 21.0,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 21.3,
+            "Mandible": 21.0
+          }
+        },
+        {
+          "Width": 21.5,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 21.8,
+            "Mandible": 21.3
+          }
+        },
+        {
+          "Width": 22.0,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 22.0,
+            "Mandible": 21.6
+          }
+        },
+        {
+          "Width": 22.5,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 22.3,
+            "Mandible": 21.9
+          }
+        },
+        {
+          "Width": 23.0,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 22.6,
+            "Mandible": 22.2
+          }
+        },
+        {
+          "Width": 23.5,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 22.9,
+            "Mandible": 22.5
+          }
+        },
+        {
+          "Width": 24.0,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 23.1,
+            "Mandible": 22.8
+          }
+        },
+        {
+          "Width": 24.5,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 23.4,
+            "Mandible": 23.1
+          }
+        },
+        {
+          "Width": 25.0,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 23.7,
+            "Mandible": 23.4
+          }
+        },
+        {
+          "Width": 25.5,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 24.0,
+            "Mandible": 23.7
+          }
+        },
+        {
+          "Width": 26.0,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 24.2,
+            "Mandible": 24.0
+          }
+        },
+        {
+          "Width": 26.5,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 24.5,
+            "Mandible": 24.3
+          }
+        },
+        {
+          "Width": 27.0,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 24.8,
+            "Mandible": 24.6
+          }
+        },
+        {
+          "Width": 27.5,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 25.0,
+            "Mandible": 24.8
+          }
+        },
+        {
+          "Width": 28.0,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 25.3,
+            "Mandible": 25.1
+          }
+        },
+        {
+          "Width": 28.5,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 25.6,
+            "Mandible": 25.4
+          }
+        },
+        {
+          "Width": 29.0,
+          "Predicted Width of Canine and Premolars": {
+            "Maxilla": 25.9,
+            "Mandible": 25.7
+          }
+        }
+      ]
+    }
+  }
+}

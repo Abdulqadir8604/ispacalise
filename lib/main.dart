@@ -44,17 +44,17 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => HuckabaState()),
       ],
       child: MaterialApp(
-        title: 'iSpacalise',
+        title: 'iSpacalize',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF00BE64)),
           useMaterial3: true,
           textTheme: textTheme,
         ),
         debugShowMaterialGrid: false,
         darkTheme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-              seedColor: Colors.green, brightness: Brightness.dark),
+              seedColor: const Color(0xFF00BE64), brightness: Brightness.dark),
           useMaterial3: true,
           textTheme: textTheme,
         ),

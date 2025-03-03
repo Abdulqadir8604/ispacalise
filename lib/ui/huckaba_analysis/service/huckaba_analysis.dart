@@ -22,14 +22,20 @@ class HuckabaService {
   // Method to generate a report with the prediction
   Map generateReport() {
     double y1 = calculateY1();
+    String prediction;
+    if (x1 < y1) {
+      prediction = "Inadequate space";
+    } else if (x1 == y1) {
+      prediction = "Adequate space";
+    } else {
+      prediction = "Spacing could be seen";
+    }
     return {
       "x1": x1.toString(),
       "x2": x2.toString(),
       "y2": y2.toString(),
-      "y1": x1.toString(),
-      "prediction": x1 > y1
-          ? "Adequate space, no regaining needed"
-          : "Inadequate space, space regainer required.",
+      "y1": y1.toString(), // Fixed typo here
+      "prediction": prediction,
       "spaceAvailable": x1.toStringAsFixed(2),
       "apparentWidthOfUneruptedPremolar": y1.toStringAsFixed(2),
     };

@@ -73,15 +73,6 @@ class _MoyersAnalysisPageState extends State<MoyersAnalysisPage> {
                               fontStyle: FontStyle.italic,
                               color: colorScheme.onSurface),
                         ),
-                        const SizedBox(height: 20),
-                        Text(
-                          "Chart pending",
-                          style: TextStyle(
-                            fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
-                            color: Colors.yellow,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
                       ],
                     ),
                   ),

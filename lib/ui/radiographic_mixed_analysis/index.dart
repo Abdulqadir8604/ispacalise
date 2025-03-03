@@ -159,8 +159,8 @@ class _RadiographicMixedDentitionAnalysisPageState
                             "2-2": 54,
                             "2-3": 55,
                             "2-4": 63,
-                            "2-5": 63,
-                            "2-6": 63,
+                            "2-5": 64,
+                            "2-6": 65,
                             // 3rd page
                             "3-1": 13,
                             "3-2": 14,

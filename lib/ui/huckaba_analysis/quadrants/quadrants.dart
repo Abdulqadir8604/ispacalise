@@ -75,6 +75,7 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
           children: [
             const SizedBox(height: 20),
             const mTextDiv(text: "Measure the following on the study model:"),
+            const SizedBox(height: 16),
             MTextField(
               controller: x1Controller,
               label:
@@ -84,6 +85,7 @@ class _HuckabaQuadsState extends State<HuckabaQuads> {
             ),
             const SizedBox(height: 16),
             const mTextDiv(text: "Measure the following on the study model:"),
+            const SizedBox(height: 16),
             MTextField(
               controller: x2Controller,
               label:

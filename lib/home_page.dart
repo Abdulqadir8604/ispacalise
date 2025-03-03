@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const mAppBar(
-        title: 'iSpacalise',
+        title: 'iSpacalize',
       ),
       body: Center(
         child: Column(
