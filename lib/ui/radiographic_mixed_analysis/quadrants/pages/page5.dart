@@ -32,8 +32,8 @@ class _Page5State extends State<Page5> {
     final List<String> fieldLabel = [
       "Distal aspect of \$5-1-1 to Mesial aspect of \$5-1-2",
       "Mesial aspect of \$5-2 to midline",
-      "C Midline to mesial aspect of \$5-3",
-      "D Mesial aspect of \$5-4-1 to Distal aspect of \$5-4-2",
+      "Midline to mesial aspect of \$5-3",
+      "Mesial aspect of \$5-4-1 to Distal aspect of \$5-4-2",
     ];
     final radData = widget.radioData;
 
