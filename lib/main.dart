@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; // Add this import
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ispacalise/provider/MoyersState.dart';
 import 'package:ispacalise/provider/RadiographicState.dart';
@@ -9,6 +10,19 @@ import 'provider/HuckabaState.dart';
 import 'provider/TanakaJohnstonState.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized(); // Ensure Flutter is initialized
+
+  // Set system UI overlay style to make navigation bar transparent
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.transparent,
+    systemNavigationBarDividerColor: Colors.transparent,
+  ));
+
+  // Make navigation bar transparent on Android
+  SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.edgeToEdge,
+  );
+
   runApp(const MyApp());
 }
 
