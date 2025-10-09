@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => HuckabaState()),
       ],
       child: MaterialApp(
-        title: 'iSpacalize',
+        title: 'iSpacalise',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF00BE64)),
